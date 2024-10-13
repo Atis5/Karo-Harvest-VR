@@ -9,12 +9,16 @@ public class ButtonPressed : MonoBehaviour
     public UnityEvent onPress;
     public UnityEvent onRelease;
 
+    [SerializeField] private float buttonDepth;
+
+    
     private GameObject presser;
     private bool isPressed = false;
+    private Vector3 buttonPosition;
 
     private void Start()
     {
-        Debug.Log("Script Started!");
+        buttonPosition = knob.GetComponent<Transform>().localPosition;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +26,7 @@ public class ButtonPressed : MonoBehaviour
         if (!isPressed)
         {
             Debug.Log("Button pressed!");
-            knob.transform.localPosition = new Vector3(0, 0.003f, 0);
+            knob.transform.localPosition = new Vector3(0, 0.002f, 0);
             presser = other.gameObject;
             onPress.Invoke();
             isPressed = true;
@@ -34,7 +38,7 @@ public class ButtonPressed : MonoBehaviour
         if (other.gameObject == presser)
         {
             Debug.Log("Button released!");
-            knob.transform.localPosition = new Vector3(0, 0.015f, 0);
+            knob.transform.localPosition = buttonPosition;
             onRelease.Invoke();
             isPressed = false;
         }
