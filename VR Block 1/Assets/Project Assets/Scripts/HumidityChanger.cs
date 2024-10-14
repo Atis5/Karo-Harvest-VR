@@ -6,7 +6,10 @@ using TMPro;
 public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI humidity;
-    private float humidityCount;
+    [SerializeField] private float humidityCount;
+
+    [Header("Settings")]
+    [SerializeField] private float humidityIncrementRate;
 
 
     // Start is called before the first frame update
@@ -32,5 +35,21 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
+    public void KeepIncreasingHumidity()
+    {
+        humidityCount += humidityIncrementRate;
+        humidity.text = Mathf.FloorToInt(humidityCount).ToString();
+    }
 
+    public void KeepDecreasingHumidity()
+    {
+        humidityCount -= humidityIncrementRate;
+        humidity.text = Mathf.FloorToInt(humidityCount).ToString();
+    }
+
+    public void EqualizeHumidity()
+    {
+        humidityCount = Mathf.FloorToInt(humidityCount);
+        humidity.text = humidityCount.ToString();
+    }
 }

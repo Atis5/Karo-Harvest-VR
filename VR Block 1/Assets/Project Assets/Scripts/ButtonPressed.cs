@@ -5,20 +5,33 @@ using UnityEngine.Events;
 
 public class ButtonPressed : MonoBehaviour
 {
+    [Header ("References")]
     public GameObject knob;
+    private GameObject presser;
+
+    [Header ("Events")]
     public UnityEvent onPress;
+    public UnityEvent onHold;
     public UnityEvent onRelease;
 
+    [Header ("Settings")]
     [SerializeField] private float buttonDepth;
 
-    
-    private GameObject presser;
+    [Header ("Other")]
     private bool isPressed = false;
     private Vector3 buttonPosition;
 
     private void Start()
     {
         buttonPosition = knob.GetComponent<Transform>().localPosition;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isPressed == true)
+        {
+            onHold.Invoke();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
