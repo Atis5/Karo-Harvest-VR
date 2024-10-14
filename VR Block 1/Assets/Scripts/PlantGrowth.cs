@@ -12,7 +12,6 @@ public class PlantGrowth : MonoBehaviour
     int plantStagesNum = 3; // minus 1, as it start off with stage 1 and changes to stage 2, whilst stage 3 happens once the time is passed
     float timePassed;
     int currStage = -1;
-    bool grow = true;
 
     Quaternion orgRotation;
 
@@ -29,10 +28,7 @@ public class PlantGrowth : MonoBehaviour
     {
         //keep track of time in seconds
         timePassed += Time.deltaTime;
-        if (grow)
-        {
-            growMethod();
-        }
+        growMethod();
     }
 
     //makes an array of the time for the plant to change stages (divided equally)
@@ -73,8 +69,16 @@ public class PlantGrowth : MonoBehaviour
                 }
                 if (i == plantStagesNum - 1)
                 {
-                    grow = false;
                     Debug.Log("fin");
+                    //create a clone of the grown crop
+                    GameObject cropClone = Instantiate(this.transform.GetChild(plantStagesNum - 1).gameObject, this.transform);
+                    //make the original grown crop invisible so that the player picks up the clone - ensures the object wont be named X(Clone)(Clone)(Clone) etc.
+                    this.transform.GetChild(plantStagesNum-1).gameObject.SetActive(false);
+
+                    //make it invisible
+                    //cropClone.SetActive(false);
+                    //make it the 3rd child so that the growth process continues
+                    //cropClone.transform.SetSiblingIndex(plantStagesNum-1);
                 }
             }
         }
@@ -83,15 +87,15 @@ public class PlantGrowth : MonoBehaviour
     public void Harvest()
     {
         timePassed = 0;
-        grow = true;
         currStage = -1;
         Debug.Log("Picked up");
+        //Debug.Log("This object: " + this.gameObject.name);
     }
 
-    public void reposition()
+    /*public void reposition()
     {
         GameObject crop = this.transform.GetChild(plantStagesNum - 1).gameObject;
         crop.transform.position = this.transform.position;
         crop.transform.rotation = orgRotation;
-    }
+    } */
 }

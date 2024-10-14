@@ -39,15 +39,21 @@ public class HarvestHeadset : MonoBehaviour
     {
         //get the crop object the player is holding
         IXRSelectInteractable crop = storingSocket.GetOldestInteractableSelected();
+        Debug.Log(crop);
         //remove the crop object from the socket so it can be modified
         storingSocket.interactionManager.SelectExit(storingSocket, crop);
+        Destroy(crop.transform.gameObject);
+
+        /*
         //get the parent of the crop object
         GameObject plantBase = crop.transform.parent.gameObject;
         //disable the visibility of the crop object
         plantBase.transform.GetChild(2).gameObject.SetActive(false);
-
+        //get script
         PlantGrowth repo = plantBase.GetComponent<PlantGrowth>();
+        //run the reposition code
         repo.reposition();
+        */
         Debug.Log("Collected");
     }
 }
