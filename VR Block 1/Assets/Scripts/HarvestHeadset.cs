@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class HarvestHeadset : MonoBehaviour
 {
-    [SerializeField] GameObject transitionScreen, player, farmSpawn, orgPos;
+    [SerializeField] GameObject transitionScreen, player, farmSpawn, stand;
     [SerializeField] int delayTime = 2;
     [SerializeField] XRSocketInteractor snapSocket;
     [SerializeField] XRSocketInteractor storingSocket;
-
+    [SerializeField] XRSocketInteractor standSocket;
 
     private void Start()
     {
@@ -26,7 +27,9 @@ public class HarvestHeadset : MonoBehaviour
         //remove headset from socket
         snapSocket.interactionManager.SelectExit(snapSocket, snapSocket.GetOldestInteractableSelected());
         //move headset to original position
-        this.transform.position = orgPos.transform.position;
+        this.transform.position = stand.transform.position;
+        //move headset to original rotation
+        this.transform.rotation = stand.transform.rotation;
     }
 
     IEnumerator Delay()
@@ -35,6 +38,7 @@ public class HarvestHeadset : MonoBehaviour
         transitionScreen.SetActive(false);
     }
 
+    //in select entered of storing socket
     public void StoreHarvest()
     {
         //get the crop object the player is holding
@@ -54,6 +58,21 @@ public class HarvestHeadset : MonoBehaviour
         //run the reposition code
         repo.reposition();
         */
-        Debug.Log("Collected");
+
+        //Debug.Log("Collected");
+    }
+
+    //in select exited for the object
+    public void returnToSocket()
+    {
+        //check if there is nothing in the socket
+        if(standSocket.interactablesSelected.Count == 0)
+        {
+            //move headset to original position
+            this.transform.position = stand.transform.position;
+            //move headset to original rotation
+            this.transform.rotation = stand.transform.rotation;
+            //Debug.Log("returning");
+        }
     }
 }
