@@ -34,10 +34,12 @@ public class HarvestHeadset : MonoBehaviour
 
     public void HeadsetOff()
     {
+        //make screen black for a few seconds
         transitionScreen.SetActive(true);
         StartCoroutine(Delay());
+        //move player back to office facing the right way
         player.transform.position = Vector3.zero;
-        Debug.Log("yur");
+        player.transform.rotation = Quaternion.identity;
     }
 
     IEnumerator Delay()
