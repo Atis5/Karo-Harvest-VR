@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class HarvestHeadset : MonoBehaviour
 {
-    [SerializeField] GameObject transitionScreen, player, farmSpawn, stand;
+    [SerializeField] GameObject transitionScreen, player, farmSpawn;
     [SerializeField] int delayTime = 2;
     [SerializeField] XRSocketInteractor snapSocket;
     [SerializeField] XRSocketInteractor storingSocket;
@@ -27,9 +27,9 @@ public class HarvestHeadset : MonoBehaviour
         //remove headset from socket
         snapSocket.interactionManager.SelectExit(snapSocket, snapSocket.GetOldestInteractableSelected());
         //move headset to original position
-        this.transform.position = stand.transform.position;
+        this.transform.position = standSocket.transform.position;
         //move headset to original rotation
-        this.transform.rotation = stand.transform.rotation;
+        this.transform.rotation = standSocket.transform.rotation;
     }
 
     public void HeadsetOff()
@@ -39,7 +39,6 @@ public class HarvestHeadset : MonoBehaviour
         StartCoroutine(Delay());
         //move player back to office facing the right way
         player.transform.position = Vector3.zero;
-        player.transform.rotation = Quaternion.identity;
     }
 
     IEnumerator Delay()
@@ -79,9 +78,9 @@ public class HarvestHeadset : MonoBehaviour
         if(standSocket.interactablesSelected.Count == 0)
         {
             //move headset to original position
-            this.transform.position = stand.transform.position;
+            this.transform.position = standSocket.transform.position;
             //move headset to original rotation
-            this.transform.rotation = stand.transform.rotation;
+            this.transform.rotation = standSocket.transform.rotation;
             //Debug.Log("returning");
         }
     }
