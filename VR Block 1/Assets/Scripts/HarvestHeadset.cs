@@ -32,6 +32,14 @@ public class HarvestHeadset : MonoBehaviour
         this.transform.rotation = stand.transform.rotation;
     }
 
+    public void HeadsetOff()
+    {
+        transitionScreen.SetActive(true);
+        StartCoroutine(Delay());
+        player.transform.position = Vector3.zero;
+        Debug.Log("yur");
+    }
+
     IEnumerator Delay()
     {
         yield return new WaitForSeconds(delayTime);
