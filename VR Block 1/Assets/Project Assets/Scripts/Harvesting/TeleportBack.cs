@@ -1,15 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TeleportBack : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] HarvestHeadset hh;
     float timeOnPlatform = 0;
     float timeToTeleport = 5;
     bool justTeleported = true;
     [SerializeField] float delayTime = 0.5f;
     [SerializeField] ParticleSystem particles;
+
+    public UnityEvent headsetOff;
 
     private void OnTriggerStay(Collider other)
     {
@@ -24,7 +26,7 @@ public class TeleportBack : MonoBehaviour
             if (timeOnPlatform >= timeToTeleport) 
             {
                 //run the taking off headset method in harvest headset script
-                hh.HeadsetOff();
+                headsetOff.Invoke();
                 //resets the time on platform and starts a delay to reset a variable
                 timeOnPlatform = 0;
                 StartCoroutine(Delay());

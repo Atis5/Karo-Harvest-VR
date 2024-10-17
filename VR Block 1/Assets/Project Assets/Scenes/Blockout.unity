@@ -2360,6 +2360,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858508328}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &905468933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905468935}
+  - component: {fileID: 905468934}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &905468934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905468933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8e2dbf677082f41bc7f125cb0b74be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePhases: []
+  malfunctTimes: []
+--- !u!4 &905468935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905468933}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.39176172, y: 2.028822, z: -0.4176172}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &908961204
 GameObject:
   m_ObjectHideFlags: 0
@@ -8960,9 +9006,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1778105468}
-  hh: {fileID: 543565022}
   delayTime: 0.5
   particles: {fileID: 1862896769}
+  headsetOff:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 543565022}
+        m_TargetAssemblyTypeName: HarvestHeadset, Assembly-CSharp
+        m_MethodName: HeadsetOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1915219179
 GameObject:
   m_ObjectHideFlags: 0
@@ -9888,6 +9948,7 @@ SceneRoots:
   - {fileID: 1249617921}
   - {fileID: 834902882}
   - {fileID: 504753692}
+  - {fileID: 905468935}
   - {fileID: 543565021}
   - {fileID: 1915219185}
   - {fileID: 1901634374}
