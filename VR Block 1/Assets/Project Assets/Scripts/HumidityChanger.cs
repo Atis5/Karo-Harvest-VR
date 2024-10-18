@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -10,20 +11,24 @@ public class NewBehaviourScript : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float humidityIncrementRate;
+    [SerializeField] GameObject ColorHumidity;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         humidity = GetComponent<TextMeshProUGUI>();
-        humidityCount = 0;
         humidity.text = humidityCount.ToString();
+        
     }
 
     public void IncreaseHumidity()
     {
+                
         humidityCount++;
         humidity.text = humidityCount.ToString();
+        
     }
 
     public void DecreaseHumidity()
@@ -51,5 +56,15 @@ public class NewBehaviourScript : MonoBehaviour
     {
         humidityCount = Mathf.FloorToInt(humidityCount);
         humidity.text = humidityCount.ToString();
+    }
+
+    void Update()
+    {
+        if (humidityCount > 0 && humidityCount < 50)
+        {
+            
+
+
+        }
     }
 }

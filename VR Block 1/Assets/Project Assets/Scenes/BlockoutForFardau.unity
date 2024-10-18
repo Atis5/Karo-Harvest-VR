@@ -2975,6 +2975,7 @@ MonoBehaviour:
   humidity: {fileID: 1091844830}
   humidityCount: 0
   humidityIncrementRate: 0.1
+  ColorHumidity: {fileID: 2003096121}
 --- !u!1 &1104742545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4478,6 +4479,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Humidity Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 2339247484041613763, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2339247484041613763, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2339247484041613763, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5189589917049229666, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4614,6 +4627,11 @@ PrefabInstance:
 --- !u!224 &2003096120 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 328216593633855077, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
+  m_PrefabInstance: {fileID: 2003096119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2003096121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4495681280595261796, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
   m_PrefabInstance: {fileID: 2003096119}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &2062040037 stripped
