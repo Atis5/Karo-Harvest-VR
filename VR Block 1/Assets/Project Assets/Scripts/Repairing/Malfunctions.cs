@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Malfunctions : MonoBehaviour
@@ -7,16 +8,27 @@ public class Malfunctions : MonoBehaviour
     [SerializeField] List<float> timePhases, malfunctTimes; //in seconds
     int[] frequencies;
     float timePassed;
-    int currPhase = -1;
+    int currMalfunct = 0;
+    float timeInBetweenMalfunct = 0.1f;
+    [SerializeField] int numPhases = 3;
+    [SerializeField] float maxTime = 18f;
+
+    bool humidifierMalfunt, harvesterMalfunt = false;
+    [SerializeField] List<string> allMachines;
+
+    [SerializeField] bool repairHumid, repairHarv;
 
     // Start is called before the first frame update
     void Start()
     {
-        timePhases.Add(3f);
-        timePhases.Add(5f);
-        timePhases.Add(8f);
-        frequencies = new int[timePhases.Count];
+        //add all machines to a list
+        allMachines.Add("Harvester");
+        allMachines.Add("Humidifier");
+        //calculations
+        calcTimePhases();
+        frequencies = new int[timePhases.Count - 1];
         calcFreq();
+        calcTimes(frequencies);
     }
 
     // Update is called once per frame
@@ -24,15 +36,42 @@ public class Malfunctions : MonoBehaviour
     {
         //keeps track of time
         timePassed = Time.time;
-
-        for (int i = 0; i < timePhases.Count; i++)
+        //index starts from 1, as index 0 = 0
+        for (int i = 1; i < malfunctTimes.Count; i++)
         {
-            if (timePassed >= timePhases[i] && currPhase == i-1)
+            if (timePassed >= malfunctTimes[i] && currMalfunct == i-1)
             {
-                currPhase = i;
-                calcTimes(frequencies[i]); // move to before if
-                //Debug.Log("equal");
+                Debug.Log("Break!");
+                if (!harvesterMalfunt || !humidifierMalfunt)
+                {
+                    breakMachine();
+                }
+                currMalfunct = i;
             }
+        }
+        //TEST
+        if (repairHarv)
+        {
+            repairMachine("Harvester");
+            harvesterMalfunt = false;
+            repairHarv = false;
+        } else if (repairHumid)
+        {
+            repairMachine("Humidifier");
+            humidifierMalfunt = false;
+            repairHumid = false;
+        }
+    }
+
+    //calculate the duration of the phases
+    void calcTimePhases()
+    {
+        timePhases.Add(0f);
+        float phaseTime = maxTime / numPhases;
+        for (int i = 1;i <= numPhases;i++)
+        {
+            timePhases.Add(timePhases[i - 1] + phaseTime);
+            //Debug.Log(timePhases[i]);
         }
     }
 
@@ -42,19 +81,57 @@ public class Malfunctions : MonoBehaviour
         for (int i = 0; i < frequencies.Length; i++)
         {
             frequencies[i] = Random.Range(1 + i, 3 + i); // 1,3 2,4, 3,5
-            //Debug.Log(i + ": " + frequencies[i]);
+            Debug.Log(i + ": " + frequencies[i]);
         }
     }
 
-    void calcTimes(int freq)
+    //get the times based on the frequencies and phases
+    void calcTimes(int[] freqArray)
     {
-        Debug.Log(currPhase + ": " + freq);
-        for (int i = 0; i < freq; i++) 
+        float num;
+        malfunctTimes.Add(0);
+        //loops through the frequency array
+        for (int i = 0; i < freqArray.Length; i++) 
         {
-            /*
-            float num = Random.Range(timePhases[i], timePhases[i+1]);
-            malfunctTimes.Add(num);
-            Debug.Log("Range: " + timePhases[i] +", "+ timePhases[i+1] + "= " + i + ": " + num); */
+            //takes the frequency from the array and gets that amount of random times
+            for (int freq = 0; freq < freqArray[i]; freq++)
+            {
+                if(freq == 0) 
+                {
+                    //gets a number in the range of the beginning of the phase to the last
+                    num = Random.Range(timePhases[i], timePhases[i + 1]);
+                } else
+                {
+                    //gets a number in the range of the previous time to the end of the phase with an delay in between so that multiple malfunctions dont happen at the same time
+                    num = Random.Range(malfunctTimes.Last() + timeInBetweenMalfunct, timePhases[i+1]);
+                }
+                //keep track of the times
+                malfunctTimes.Add(num);
+                Debug.Log("Range: " + timePhases[i] + " to " + timePhases[i + 1] + " = " + i + ": " + num);
+            }
         }
+    }
+
+    void breakMachine()
+    {
+        int rand = Random.Range(0, allMachines.Count);
+        if (allMachines[rand] == "Humidifier")
+        {
+            Debug.Log("Humidifier broken");
+            humidifierMalfunt = true;
+        } else if (allMachines[rand] == "Harvester")
+        {
+            Debug.Log("Harvester broken");
+            harvesterMalfunt = true;
+        } else
+        {
+            Debug.Log("Machine doesn't exist");
+        }
+        allMachines.RemoveAt(rand);
+    }
+
+    void repairMachine(string machine)
+    {
+        allMachines.Add(machine);
     }
 }
