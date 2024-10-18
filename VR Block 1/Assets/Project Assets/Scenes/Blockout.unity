@@ -2391,6 +2391,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timePhases: []
   malfunctTimes: []
+  numPhases: 3
+  maxTime: 18
+  allMachines: []
+  repairHumid: 0
+  repairHarv: 0
 --- !u!4 &905468935
 Transform:
   m_ObjectHideFlags: 0
