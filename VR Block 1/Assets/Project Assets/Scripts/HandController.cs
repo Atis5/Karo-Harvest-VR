@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
+
+// To determine which controller the script is related to
 public enum HandType
 {
     Left,
@@ -32,6 +34,7 @@ public class HandController : MonoBehaviour
         AnimateHand();
     }
 
+    // Required to read input from the controller
     InputDevice GetInputDevice()
     {
         InputDeviceCharacteristics controllerCharacteristic = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Controller;
@@ -50,9 +53,10 @@ public class HandController : MonoBehaviour
         return inputDevices[0];
     }
 
+    // Reads the input and applies corresponding animation to the hand object
     void AnimateHand()
     {
-        inputDevice.TryGetFeatureValue(CommonUsages.trigger, out grabValue);
+        inputDevice.TryGetFeatureValue(CommonUsages.grip, out grabValue);
 
         animator.SetFloat("Grab", grabValue);
     }

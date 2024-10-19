@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class ButtonPressed : MonoBehaviour
 {
-    [Header ("References")]
-    public GameObject knob;
+    [Header("References")]
+    [SerializeField] private GameObject knob;
     private GameObject presser;
 
     [Header ("Events")]
