@@ -14,17 +14,18 @@ public class DialInteraction : MonoBehaviour
     public UnityEvent dialRight;
 
     [Header("Other")]
-    private float knobRotation;
+    public Transform dialKnobTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        knobRotation = dialKnob.GetComponent<Transform>().rotation.eulerAngles.y;
+        dialKnobTransform = dialKnob.GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(dialKnobTransform.localEulerAngles.y);
         CallDialLeft();
         CallDialUp();   
         CallDialRight();
@@ -32,27 +33,27 @@ public class DialInteraction : MonoBehaviour
 
     private void CallDialLeft()
     {
-        if (knobRotation <= -90)
+        if (dialKnobTransform.localEulerAngles.y == 0)
         {
-            Debug.Log("Dial rotated left!");
+            //Debug.Log("Dial rotated left!");
             dialLeft.Invoke();
         }
     }
 
     private void CallDialUp()
     {
-        if (knobRotation == 0)
+        if (dialKnobTransform.localEulerAngles.y >= 60 && dialKnobTransform.localEulerAngles.y <= 120)
         {
-            Debug.Log("Dial rotated up!");
+            //Debug.Log("Dial rotated up!");
             dialUp.Invoke();
         }
     }
 
     private void CallDialRight()
     {
-        if (knobRotation >= 90)
+        if (dialKnobTransform.localEulerAngles.y == 180)
         {
-            Debug.Log("Dial rotated right!");
+            //Debug.Log("Dial rotated right!");
             dialRight.Invoke();
         }
     }
