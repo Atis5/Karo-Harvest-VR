@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class HumidityChanger : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI humidity;
     [SerializeField] private float humidityCount;
+    public Image image;
 
     [Header("Settings")]
     [SerializeField] private float humidityIncrementRate;
-    [SerializeField] GameObject ColorHumidity;
+
 
 
 
@@ -58,13 +60,24 @@ public class NewBehaviourScript : MonoBehaviour
         humidity.text = humidityCount.ToString();
     }
 
+    void ChangeColor()
+    {
+        if (humidityCount >= 0 && humidityCount < 50)
+        {
+            image.color = new Color32(255, 0, 0, 230);
+        }
+        else if (humidityCount >= 50 && humidityCount < 70)
+        {
+            image.color = new Color32(0, 0, 0, 230);
+        }
+        else
+        {
+            image.color = new Color32(255, 0, 0, 230);
+        }
+    }
+
     void Update()
     {
-        if (humidityCount > 0 && humidityCount < 50)
-        {
-            
-
-
-        }
+        ChangeColor();
     }
 }
