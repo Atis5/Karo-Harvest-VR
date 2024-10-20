@@ -33,7 +33,7 @@ public class DialInteraction : MonoBehaviour
 
     private void CallDialLeft()
     {
-        if (dialKnobTransform.localEulerAngles.y == 0)
+        if (dialKnobTransform.localEulerAngles.y < 60)
         {
             //Debug.Log("Dial rotated left!");
             dialLeft.Invoke();
@@ -51,7 +51,7 @@ public class DialInteraction : MonoBehaviour
 
     private void CallDialRight()
     {
-        if (dialKnobTransform.localEulerAngles.y == 180)
+        if (dialKnobTransform.localEulerAngles.y > 120)
         {
             //Debug.Log("Dial rotated right!");
             dialRight.Invoke();

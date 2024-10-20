@@ -1629,7 +1629,7 @@ GameObject:
   - component: {fileID: 439439751}
   - component: {fileID: 439439750}
   m_Layer: 5
-  m_Name: Rotation Number
+  m_Name: Rotation Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3794,6 +3794,7 @@ GameObject:
   - component: {fileID: 1177744771}
   - component: {fileID: 1177744770}
   - component: {fileID: 1177744773}
+  - component: {fileID: 1177744774}
   m_Layer: 0
   m_Name: Dial Controller
   m_TagString: Untagged
@@ -3935,14 +3936,65 @@ MonoBehaviour:
   dialKnob: {fileID: 1841129043}
   dialLeft:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1177744774}
+        m_TargetAssemblyTypeName: DialShowcase, Assembly-CSharp
+        m_MethodName: DisplayLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   dialUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1177744774}
+        m_TargetAssemblyTypeName: DialShowcase, Assembly-CSharp
+        m_MethodName: DisplayUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   dialRight:
     m_PersistentCalls:
-      m_Calls: []
-  dialKnobTransform: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 1177744774}
+        m_TargetAssemblyTypeName: DialShowcase, Assembly-CSharp
+        m_MethodName: DisplayRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dialKnobTransform: {fileID: 1841129044}
+--- !u!114 &1177744774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177744769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14c79aed4ca209489cda0f8825b4546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialController: {fileID: 1177744769}
+  valueNumber: {fileID: 267013854}
+  rotationText: {fileID: 439439750}
 --- !u!1 &1227013621
 GameObject:
   m_ObjectHideFlags: 0
