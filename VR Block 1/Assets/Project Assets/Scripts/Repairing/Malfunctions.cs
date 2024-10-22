@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Malfunctions : MonoBehaviour
@@ -15,8 +16,9 @@ public class Malfunctions : MonoBehaviour
 
     bool humidifierMalfunt, harvesterMalfunt = false;
     [SerializeField] List<string> allMachines;
+    [SerializeField] TextMeshPro humidifierTXT, harvesterTXT;
 
-    [SerializeField] bool repairHumid, repairHarv;
+    //[SerializeField] bool repairHumid, repairHarv;
 
     // Start is called before the first frame update
     void Start()
@@ -49,18 +51,20 @@ public class Malfunctions : MonoBehaviour
                 currMalfunct = i;
             }
         }
-        //TEST
+        /*//TEST
         if (repairHarv)
         {
             repairMachine("Harvester");
             harvesterMalfunt = false;
+            harvesterTXT.text = "HARVESTER: FUNCTIONING PROPERLY";
             repairHarv = false;
         } else if (repairHumid)
         {
             repairMachine("Humidifier");
             humidifierMalfunt = false;
+            humidifierTXT.text = "HUMIDIFIER: FUNCTIONING PROPERLY";
             repairHumid = false;
-        }
+        }*/
     }
 
     //calculate the duration of the phases
@@ -112,6 +116,7 @@ public class Malfunctions : MonoBehaviour
         }
     }
 
+    //chooses a random machine to break
     void breakMachine()
     {
         int rand = Random.Range(0, allMachines.Count);
@@ -119,10 +124,12 @@ public class Malfunctions : MonoBehaviour
         {
             Debug.Log("Humidifier broken");
             humidifierMalfunt = true;
+            humidifierTXT.text = "HUMIDIFIER: MALFUNCTIONING";
         } else if (allMachines[rand] == "Harvester")
         {
             Debug.Log("Harvester broken");
             harvesterMalfunt = true;
+            harvesterTXT.text = "HARVESTER: MALFUNCTIONING";
         } else
         {
             Debug.Log("Machine doesn't exist");
@@ -130,8 +137,20 @@ public class Malfunctions : MonoBehaviour
         allMachines.RemoveAt(rand);
     }
 
-    void repairMachine(string machine)
+    //attached to buttons with a corresponding string
+    public void repairMachine(string machine)
     {
         allMachines.Add(machine);
+        if (machine == "Harvester")
+        {
+            harvesterMalfunt = false;
+            harvesterTXT.text = "HARVESTER: FUNCTIONING PROPERLY";
+            Debug.Log("fixed harvester");
+        } else if (machine == "Humidifier")
+        {
+            humidifierMalfunt = false;
+            humidifierTXT.text = "HUMIDIFIER: FUNCTIONING PROPERLY";
+            Debug.Log("fixed humidifier");
+        }
     }
 }
