@@ -2973,7 +2973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humidity: {fileID: 1091844830}
-  humidityCount: 0
+  humidityCount: 65
   image: {fileID: 2003096123}
   humidityIncrementRate: 0.1
 --- !u!1 &1104742545
@@ -3913,7 +3913,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e21fc292df570e547b1d63bc58d68b5e, type: 2}
+  - {fileID: 2100000, guid: 4725319922c6a044e8c71bfec380cbb3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4429,7 +4429,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4725319922c6a044e8c71bfec380cbb3, type: 2}
+  - {fileID: 2100000, guid: e21fc292df570e547b1d63bc58d68b5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

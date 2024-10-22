@@ -22,7 +22,6 @@ public class HumidityChanger : MonoBehaviour
     {
         humidity = GetComponent<TextMeshProUGUI>();
         humidity.text = humidityCount.ToString();
-        
     }
 
     public void IncreaseHumidity()
@@ -76,8 +75,11 @@ public class HumidityChanger : MonoBehaviour
         }
     }
 
+
     void Update()
     {
         ChangeColor();
+
+        
     }
 }
