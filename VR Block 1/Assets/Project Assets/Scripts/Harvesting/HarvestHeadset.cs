@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -12,6 +13,8 @@ public class HarvestHeadset : MonoBehaviour
     [SerializeField] XRSocketInteractor snapSocket;
     [SerializeField] XRSocketInteractor storingSocket;
     [SerializeField] XRSocketInteractor standSocket;
+
+    public UnityEvent countCrop;
 
     private void Start()
     {
@@ -57,6 +60,7 @@ public class HarvestHeadset : MonoBehaviour
         storingSocket.interactionManager.SelectExit(storingSocket, crop);
         Destroy(crop.transform.gameObject);
 
+        countCrop.Invoke();
         /*
         //get the parent of the crop object
         GameObject plantBase = crop.transform.parent.gameObject;

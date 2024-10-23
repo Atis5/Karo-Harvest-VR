@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Malfunctions : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Malfunctions : MonoBehaviour
     bool humidifierMalfunt, harvesterMalfunt = false;
     [SerializeField] List<string> allMachines;
     [SerializeField] TextMeshPro humidifierTXT, harvesterTXT;
+    [SerializeField] GameObject harvesterMalfunctUI, humidifierMalfunctUI;
+    [SerializeField] GameObject headset;
 
     //[SerializeField] bool repairHumid, repairHarv;
 
@@ -85,7 +88,7 @@ public class Malfunctions : MonoBehaviour
         for (int i = 0; i < frequencies.Length; i++)
         {
             frequencies[i] = Random.Range(1 + i, 3 + i); // 1,3 2,4, 3,5
-            Debug.Log(i + ": " + frequencies[i]);
+            //Debug.Log(i + ": " + frequencies[i]);
         }
     }
 
@@ -111,7 +114,7 @@ public class Malfunctions : MonoBehaviour
                 }
                 //keep track of the times
                 malfunctTimes.Add(num);
-                Debug.Log("Range: " + timePhases[i] + " to " + timePhases[i + 1] + " = " + i + ": " + num);
+                //Debug.Log("Range: " + timePhases[i] + " to " + timePhases[i + 1] + " = " + i + ": " + num);
             }
         }
     }
@@ -122,14 +125,12 @@ public class Malfunctions : MonoBehaviour
         int rand = Random.Range(0, allMachines.Count);
         if (allMachines[rand] == "Humidifier")
         {
-            Debug.Log("Humidifier broken");
-            humidifierMalfunt = true;
-            humidifierTXT.text = "HUMIDIFIER: MALFUNCTIONING";
+            //Debug.Log("Humidifier broken");
+            breakHumidifier();
         } else if (allMachines[rand] == "Harvester")
         {
-            Debug.Log("Harvester broken");
-            harvesterMalfunt = true;
-            harvesterTXT.text = "HARVESTER: MALFUNCTIONING";
+            //Debug.Log("Harvester broken");
+            breakHarvester();
         } else
         {
             Debug.Log("Machine doesn't exist");
@@ -143,14 +144,50 @@ public class Malfunctions : MonoBehaviour
         allMachines.Add(machine);
         if (machine == "Harvester")
         {
-            harvesterMalfunt = false;
-            harvesterTXT.text = "HARVESTER: FUNCTIONING PROPERLY";
+            repairHarvester();
             Debug.Log("fixed harvester");
         } else if (machine == "Humidifier")
         {
-            humidifierMalfunt = false;
-            humidifierTXT.text = "HUMIDIFIER: FUNCTIONING PROPERLY";
+            repairHumidifier();
             Debug.Log("fixed humidifier");
         }
+    }
+
+    void breakHarvester()
+    {
+        //gets the script that makes the object grabbable and disables it
+        headset.GetComponent<XRGrabInteractable>().enabled = false;
+        //activates the malfunction UI
+        harvesterMalfunctUI.SetActive(true);
+        harvesterMalfunt = true;
+        harvesterTXT.text = "HARVESTER: MALFUNCTIONING";
+    }
+
+    void breakHumidifier()
+    {
+        //activates the malfunction UI
+        humidifierMalfunctUI.SetActive(true);
+        humidifierMalfunt = true;
+        humidifierTXT.text = "HUMIDIFIER: MALFUNCTIONING";
+    }
+
+    void repairHarvester()
+    {
+        //enables the script that makes the object grabbable
+        headset.GetComponent<XRGrabInteractable>().enabled = true;
+        //deactivates the malfunction UI
+        harvesterMalfunctUI.SetActive(false);
+        harvesterMalfunt = false;
+        harvesterTXT.text = "HARVESTER: FUNCTIONING PROPERLY";
+    }
+
+    void repairHumidifier()
+    {
+        //deactivates the malfunction UI
+        humidifierMalfunctUI.SetActive(false);
+        humidifierMalfunt = false;
+        humidifierTXT.text = "HUMIDIFIER: FUNCTIONING PROPERLY";
+
+        //continue code...
     }
 }
