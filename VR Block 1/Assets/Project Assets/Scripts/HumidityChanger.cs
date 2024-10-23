@@ -16,8 +16,6 @@ public class HumidityChanger : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float humidityIncrementRateButton;
 
-    private HumidityBar humidityBar;
-
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +23,6 @@ public class HumidityChanger : MonoBehaviour
         humidity = GetComponent<TextMeshProUGUI>();
         humidity.text = humidityCount.ToString();
 
-        humidityBar.UpdateHumidityBar(maxHumidityCount, humidityCount);
     }
 
 
