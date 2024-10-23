@@ -11,7 +11,9 @@ public class HandScanner : MonoBehaviour
     [SerializeField] float timeOnScanner = 0;
     [SerializeField] float timeToScan = 3;
     [SerializeField] TextMeshPro passText;
-    [SerializeField] TMP_FontAsset font;
+    [SerializeField] TMP_FontAsset font, orgFont;
+    string orgText = "> scan hand to reveal <";
+    [SerializeField] float orgFontSize = 192.8f;
     bool scanned = false;
 
     string password;
@@ -20,8 +22,11 @@ public class HandScanner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        passText.fontSize = orgFontSize;
         //to get the password from repair script
         repairScript?.sendPass.AddListener(getPass);
+        //to check if the person got logged off
+        repairScript?.logOff.AddListener(loggedOff);
     }
 
     private void OnTriggerStay(Collider other)
@@ -50,6 +55,16 @@ public class HandScanner : MonoBehaviour
     //gets the password from repairing script
     void getPass(string pass)
     {
+        Debug.Log("got pass: " + pass);
         password = pass;
+    }
+
+    void loggedOff()
+    {
+        Debug.Log("logged off");
+        passText.text = orgText;
+        passText.font = orgFont;
+        passText.fontSize = orgFontSize;
+        scanned = false;
     }
 }

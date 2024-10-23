@@ -12,6 +12,9 @@ public class Repairing : MonoBehaviour
     string[] symbols = { "b ", "s ", "r ", "u " }; //https://www.fontspace.com/badabum-font-f7151#action=charmap&id=lzxZ
     string password;
     bool generatedPass = false;
+    bool loggedIn = false;
+    float timeLogged;
+    float maxTimeLogged = 3;
     string orgTxt = "Enter Access Code";
     string failTxt = "Wrong Access Code";
     int passCount;
@@ -19,13 +22,14 @@ public class Repairing : MonoBehaviour
     [SerializeField] GameObject loginPage, choosingPage;
 
     public UnityEvent<string> sendPass;
+    public UnityEvent logOff;
 
+    //for testing
     [SerializeField] bool skipPass = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        orgFont = GetComponent<TMP_FontAsset>();
         enterPass.fontSize = orgFontSize;
         choosingPage.SetActive(false);
     }
@@ -41,11 +45,27 @@ public class Repairing : MonoBehaviour
             sendPass.Invoke(password);
             generatedPass = true;
         }
+        if (loggedIn)
+        {
+            Debug.Log("Logged in!");
+            timeLogged += Time.deltaTime;
+            if (timeLogged >= maxTimeLogged)
+            {
+                loginPage.SetActive(true);
+                choosingPage.SetActive(false);
+                loggedIn = false;
+                generatedPass = false;
+                //log off in hand scanner
+                logOff.Invoke();
+                timeLogged = 0;
+            }
+        }
         //FOR TESTING PURPOSES
         if (skipPass)
         {
             loginPage.SetActive(false);
             choosingPage.SetActive(true);
+            loggedIn = true;
             skipPass = false;
         }
     }
@@ -92,6 +112,7 @@ public class Repairing : MonoBehaviour
             {
                 loginPage.SetActive(false);
                 choosingPage.SetActive(true);
+                loggedIn = true;
             } else
             {
                 enterPass.text = failTxt;

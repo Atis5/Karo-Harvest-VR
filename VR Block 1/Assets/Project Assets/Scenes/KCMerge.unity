@@ -4581,12 +4581,15 @@ MonoBehaviour:
   newPass: {fileID: 698994921}
   enterPass: {fileID: 2036756138}
   font: {fileID: 11400000, guid: 9de33776f61cc7947afa1c1ff9e61a82, type: 2}
-  orgFont: {fileID: 0}
+  orgFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   passLength: 5
   orgFontSize: 192.8
   loginPage: {fileID: 999268618}
   choosingPage: {fileID: 719501661}
   sendPass:
+    m_PersistentCalls:
+      m_Calls: []
+  logOff:
     m_PersistentCalls:
       m_Calls: []
   skipPass: 0
@@ -7654,6 +7657,8 @@ MonoBehaviour:
   timeToScan: 3
   passText: {fileID: 1780204233}
   font: {fileID: 11400000, guid: 9de33776f61cc7947afa1c1ff9e61a82, type: 2}
+  orgFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  orgFontSize: 192.8
   repairScript: {fileID: 905468936}
 --- !u!1 &1678264069
 GameObject:
