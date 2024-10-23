@@ -9,12 +9,14 @@ public class HumidityChanger : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI humidity;
     [SerializeField] public float humidityCount;
+    [SerializeField] public float maxHumidityCount;
     public Image image;
+    public Image humidityBarSprite;
 
     [Header("Settings")]
     [SerializeField] private float humidityIncrementRateButton;
 
-
+    private HumidityBar humidityBar;
 
 
     // Start is called before the first frame update
@@ -23,7 +25,10 @@ public class HumidityChanger : MonoBehaviour
         humidity = GetComponent<TextMeshProUGUI>();
         humidity.text = humidityCount.ToString();
 
+        humidityBar.UpdateHumidityBar(maxHumidityCount, humidityCount);
     }
+
+
 
     public void IncreaseHumidity()
     {
@@ -39,6 +44,7 @@ public class HumidityChanger : MonoBehaviour
         {
             humidityCount--;
             humidity.text = humidityCount.ToString();
+           
         }
     }
 
@@ -46,18 +52,21 @@ public class HumidityChanger : MonoBehaviour
     {
         humidityCount += humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
+        
     }
 
     public void ContinueDecreasingHumidity()
     {
         humidityCount -= humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
+        
     }
 
     public void EqualizeHumidity()
     {
         humidityCount = Mathf.FloorToInt(humidityCount);
         humidity.text = humidityCount.ToString();
+        
     }
 
     public void ChangeColor()
@@ -65,22 +74,28 @@ public class HumidityChanger : MonoBehaviour
         if (humidityCount >= 0 && humidityCount < 50)
         {
             image.color = new Color32(255, 0, 0, 230);
+            humidityBarSprite.color = new Color32(255, 0, 0, 255);
         }
         else if (humidityCount >= 50 && humidityCount < 70)
         {
             image.color = new Color32(0, 0, 0, 230);
+            humidityBarSprite.color = new Color32(0, 255, 0, 255);
         }
         else
         {
-            image.color = new Color32(255, 0, 0, 230);
+            image.color = new Color32(0, 0, 0, 230);
+            humidityBarSprite.color = new Color32(255, 0, 0, 255);
         }
     }
 
+    public void UpdateHumidityBar()
+    {
+        humidityBarSprite.fillAmount = humidityCount / maxHumidityCount;
+    }
 
     void Update()
     {
         ChangeColor();
-
-        
+        UpdateHumidityBar();
     }
 }
