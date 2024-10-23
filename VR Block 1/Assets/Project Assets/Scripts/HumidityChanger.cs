@@ -8,11 +8,11 @@ using UnityEngine.UI;
 public class HumidityChanger : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI humidity;
-    [SerializeField] private float humidityCount;
+    [SerializeField] public float humidityCount;
     public Image image;
 
     [Header("Settings")]
-    [SerializeField] private float humidityIncrementRate;
+    [SerializeField] private float humidityIncrementRateButton;
 
 
 
@@ -22,6 +22,7 @@ public class HumidityChanger : MonoBehaviour
     {
         humidity = GetComponent<TextMeshProUGUI>();
         humidity.text = humidityCount.ToString();
+
     }
 
     public void IncreaseHumidity()
@@ -41,15 +42,15 @@ public class HumidityChanger : MonoBehaviour
         }
     }
 
-    public void KeepIncreasingHumidity()
+    public void ContinueIncreasingHumidity()
     {
-        humidityCount += humidityIncrementRate;
+        humidityCount += humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
     }
 
-    public void KeepDecreasingHumidity()
+    public void ContinueDecreasingHumidity()
     {
-        humidityCount -= humidityIncrementRate;
+        humidityCount -= humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
     }
 
@@ -59,7 +60,7 @@ public class HumidityChanger : MonoBehaviour
         humidity.text = humidityCount.ToString();
     }
 
-    void ChangeColor()
+    public void ChangeColor()
     {
         if (humidityCount >= 0 && humidityCount < 50)
         {
