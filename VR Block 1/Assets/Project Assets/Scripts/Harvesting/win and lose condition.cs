@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class winandlosecondition : MonoBehaviour
@@ -9,15 +10,17 @@ public class winandlosecondition : MonoBehaviour
     [SerializeField]
     private int winCondition = 15; // Number of crops required to win
     [SerializeField]
-    private float timeLimit = 60f; // Time limit in seconds
+    private float timeLimit = 10f; // Time limit in seconds
     private bool gameIsOver = false; // To track if the game is over
+
+    float timePassed;
 
     private void Start()
     {
         // Start the timer countdown when the game begins
-        StartCoroutine(StartTimer());
+        //StartCoroutine(StartTimer());
     }
-
+    /*
     public void StoreHarvest()
     {
         if (gameIsOver) return; // Prevent storing crops after game is over
@@ -52,21 +55,46 @@ public class winandlosecondition : MonoBehaviour
                 LoseGame();
             }
         }
+    }*/
+
+    private void Update()
+    {
+        timePassed = Time.time;
+        if (cropCount >= winCondition)
+        {
+            WinGame();
+        } else if (timePassed >= timeLimit) 
+        {
+            LoseGame();
+        }
+    }
+
+    //referenced in harvest headset storing method
+    public void addCrop()
+    {
+        cropCount++;
+        Debug.Log(cropCount.ToString());
     }
 
     // Method to handle winning
     private void WinGame()
     {
-        gameIsOver = true; // Set game as over to prevent further actions
+        //gameIsOver = true; // Set game as over to prevent further actions
+
         Debug.Log("Congratulations! You won the game!");
 
+        //load win scene (reference in build settings)
+        SceneManager.LoadScene("WinUI");
     }
 
     // Method to handle losing
     private void LoseGame()
     {
-        gameIsOver = true; // Set game as over to prevent further actions
+        //gameIsOver = true; // Set game as over to prevent further actions
+
         Debug.Log("Time's up! You lost the game.");
+        //load lose scene (reference in build settings)
+        SceneManager.LoadScene("LoseUI");
     }
 }
 
