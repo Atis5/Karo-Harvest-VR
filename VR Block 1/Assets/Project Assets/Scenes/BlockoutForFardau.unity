@@ -206,7 +206,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1091844832}
         m_TargetAssemblyTypeName: HumidityChanger, Assembly-CSharp
-        m_MethodName: IncreaseHumidity
+        m_MethodName: DecreaseHumidity
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1091844832}
         m_TargetAssemblyTypeName: HumidityChanger, Assembly-CSharp
-        m_MethodName: ContinueIncreasingHumidity
+        m_MethodName: ContinueDecreasingHumidity
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2971,8 +2971,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1091844832}
-        m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
-        m_MethodName: KeepIncreasingHumidity
+        m_TargetAssemblyTypeName: HumidityChanger, Assembly-CSharp
+        m_MethodName: ContinueIncreasingHumidity
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
