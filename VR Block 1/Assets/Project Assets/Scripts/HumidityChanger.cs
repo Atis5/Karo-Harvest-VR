@@ -2,28 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class HumidityChanger : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI humidity;
-    [SerializeField] private float humidityCount;
+    [SerializeField] public float humidityCount;
+    public Image image;
 
     [Header("Settings")]
-    [SerializeField] private float humidityIncrementRate;
+    [SerializeField] private float humidityIncrementRateButton;
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         humidity = GetComponent<TextMeshProUGUI>();
-        humidityCount = 0;
         humidity.text = humidityCount.ToString();
+
     }
 
     public void IncreaseHumidity()
     {
+                
         humidityCount++;
         humidity.text = humidityCount.ToString();
+        
     }
 
     public void DecreaseHumidity()
@@ -35,15 +42,15 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-    public void KeepIncreasingHumidity()
+    public void ContinueIncreasingHumidity()
     {
-        humidityCount += humidityIncrementRate;
+        humidityCount += humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
     }
 
-    public void KeepDecreasingHumidity()
+    public void ContinueDecreasingHumidity()
     {
-        humidityCount -= humidityIncrementRate;
+        humidityCount -= humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
     }
 
@@ -51,5 +58,29 @@ public class NewBehaviourScript : MonoBehaviour
     {
         humidityCount = Mathf.FloorToInt(humidityCount);
         humidity.text = humidityCount.ToString();
+    }
+
+    public void ChangeColor()
+    {
+        if (humidityCount >= 0 && humidityCount < 50)
+        {
+            image.color = new Color32(255, 0, 0, 230);
+        }
+        else if (humidityCount >= 50 && humidityCount < 70)
+        {
+            image.color = new Color32(0, 0, 0, 230);
+        }
+        else
+        {
+            image.color = new Color32(255, 0, 0, 230);
+        }
+    }
+
+
+    void Update()
+    {
+        ChangeColor();
+
+        
     }
 }
