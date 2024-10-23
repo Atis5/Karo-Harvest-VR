@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class winloseconditions : MonoBehaviour
+public class winandlosecondition : MonoBehaviour
 {
     public int cropCount = 0; // Tracks the number of crops collected
-    [SerializeField] 
+    [SerializeField]
     private int winCondition = 15; // Number of crops required to win
-    [SerializeField] 
+    [SerializeField]
     private float timeLimit = 60f; // Time limit in seconds
     private bool gameIsOver = false; // To track if the game is over
 
@@ -59,7 +59,7 @@ public class winloseconditions : MonoBehaviour
     {
         gameIsOver = true; // Set game as over to prevent further actions
         Debug.Log("Congratulations! You won the game!");
-        
+
     }
 
     // Method to handle losing
@@ -69,3 +69,4 @@ public class winloseconditions : MonoBehaviour
         Debug.Log("Time's up! You lost the game.");
     }
 }
+
