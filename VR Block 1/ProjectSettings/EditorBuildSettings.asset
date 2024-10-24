@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleSceneHandInteraction.unity
     guid: 3496b7f9194c23749bded31b28908b1a
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/KCMerge.unity
+    guid: 737a60acdf435b0459e6fc5df3042ba0
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/LoseUI.unity
+    guid: 4140406533e1925448d29bef6f375da9
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/WinUI.unity
+    guid: 73720055beebd8649bb3c68de5aae669
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

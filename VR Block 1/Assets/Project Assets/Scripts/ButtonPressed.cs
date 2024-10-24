@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class ButtonPressed : MonoBehaviour
 {
-    [Header ("References")]
-    public GameObject knob;
+    [Header("References")]
+    [SerializeField] private GameObject knob;
     private GameObject presser;
 
     [Header ("Events")]
@@ -38,7 +38,7 @@ public class ButtonPressed : MonoBehaviour
     {
         if (!isPressed)
         {
-            Debug.Log("Button pressed!");
+            //Debug.Log("Button pressed!");
             knob.transform.localPosition = new Vector3(0, 0.002f, 0);
             presser = other.gameObject;
             onPress.Invoke();
@@ -50,7 +50,7 @@ public class ButtonPressed : MonoBehaviour
     {
         if (other.gameObject == presser)
         {
-            Debug.Log("Button released!");
+            //Debug.Log("Button released!");
             knob.transform.localPosition = buttonPosition;
             onRelease.Invoke();
             isPressed = false;
