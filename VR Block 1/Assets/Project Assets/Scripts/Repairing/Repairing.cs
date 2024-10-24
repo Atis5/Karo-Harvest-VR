@@ -55,7 +55,10 @@ public class Repairing : MonoBehaviour
                 choosingPage.SetActive(false);
                 loggedIn = false;
                 generatedPass = false;
+                //return text to original
                 enterPass.text = orgTxt;
+                enterPass.font = orgFont;
+                enterPass.fontSize = orgFontSize;
                 //log off in hand scanner
                 logOff.Invoke();
                 timeLogged = 0;

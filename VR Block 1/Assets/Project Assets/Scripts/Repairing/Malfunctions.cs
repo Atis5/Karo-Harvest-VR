@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using static UnityEditor.ShaderData;
 
 public class Malfunctions : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class Malfunctions : MonoBehaviour
     int currMalfunct = 0;
     float timeInBetweenMalfunct = 0.1f;
     [SerializeField] int numPhases = 3;
-    [SerializeField] float maxTime = 18f;
+    [SerializeField] float maxTime;
 
     bool humidifierMalfunt, harvesterMalfunt = false;
     [SerializeField] List<string> allMachines;
@@ -23,19 +25,32 @@ public class Malfunctions : MonoBehaviour
 
     //[SerializeField] bool repairHumid, repairHarv;
 
+    [SerializeField] winandlosecondition wlScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        wlScript?.sendTime.AddListener(getMaxTime);
+        wlScript?.startCalc.AddListener(startCalculations);
         //add all machines to a list
         allMachines.Add("Harvester");
         allMachines.Add("Humidifier");
+        /*
         //calculations
+        calcTimePhases();
+        frequencies = new int[timePhases.Count - 1];
+        calcFreq();
+        calcTimes(frequencies);*/
+    }
+
+    //called by the winning and losing conditions script so it happens after the script gets the maxTime variable
+    void startCalculations()
+    {
         calcTimePhases();
         frequencies = new int[timePhases.Count - 1];
         calcFreq();
         calcTimes(frequencies);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -189,5 +204,11 @@ public class Malfunctions : MonoBehaviour
         humidifierTXT.text = "HUMIDIFIER: FUNCTIONING PROPERLY";
 
         //continue code...
+    }
+
+    void getMaxTime(float time)
+    {
+        Debug.Log("got pass: " + time);
+        maxTime = time;
     }
 }
