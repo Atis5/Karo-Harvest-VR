@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HandScanner : MonoBehaviour
 {
-    [SerializeField] GameObject leftHand, rightHand; //ITS CURRENTLY USING A TESTER BLOCK - REMEMBER TO CHANGE THIS
+    //[SerializeField] GameObject leftHand, rightHand; //ITS CURRENTLY USING A TESTER BLOCK - REMEMBER TO CHANGE THIS
     [SerializeField] float timeOnScanner = 0;
     [SerializeField] float timeToScan = 3;
     [SerializeField] TextMeshPro passText;
@@ -31,8 +31,8 @@ public class HandScanner : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject == leftHand || other.gameObject == rightHand) 
-        {
+        //if (other.gameObject == leftHand || other.gameObject == rightHand) 
+        //{
             Debug.Log("scanning");
             timeOnScanner += Time.deltaTime;
             //after waiting for a few seconds, the password shows up
@@ -44,7 +44,7 @@ public class HandScanner : MonoBehaviour
                 passText.fontSize = 687;
                 scanned = true;
             }
-        }
+        //}
     }
 
     private void OnTriggerExit(Collider other)

@@ -7,63 +7,61 @@ using UnityEngine.UI;
 
 public class HumidityChanger : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Image image;
+    [SerializeField] private Image humidityBarSprite;
     [SerializeField] private TextMeshProUGUI humidity;
-    [SerializeField] public float humidityCount;
-    [SerializeField] public float maxHumidityCount;
-    public Image image;
-    public Image humidityBarSprite;
 
     [Header("Settings")]
     [SerializeField] private float humidityIncrementRateButton;
+    [SerializeField] private float maxHumidityCount;
 
+    public float humidityCount;
 
     // Start is called before the first frame update
     void Start()
     {
         humidity = GetComponent<TextMeshProUGUI>();
         humidity.text = humidityCount.ToString();
-
     }
 
 
-
+    // Used by UnityEvents.
     public void IncreaseHumidity()
-    {
-                
+    {      
         humidityCount++;
         humidity.text = humidityCount.ToString();
-        
     }
 
+    // Used by UnityEvents.
     public void DecreaseHumidity()
     {
         if (humidityCount > 0)
         {
             humidityCount--;
             humidity.text = humidityCount.ToString();
-           
         }
     }
 
+    // Used by UnityEvents.
     public void ContinueIncreasingHumidity()
     {
         humidityCount += humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
-        
     }
 
+    // Used by UnityEvents.
     public void ContinueDecreasingHumidity()
     {
         humidityCount -= humidityIncrementRateButton;
         humidity.text = Mathf.FloorToInt(humidityCount).ToString();
-        
     }
 
+    // Used by UnityEvents.
     public void EqualizeHumidity()
     {
         humidityCount = Mathf.FloorToInt(humidityCount);
         humidity.text = humidityCount.ToString();
-        
     }
 
     public void ChangeColor()

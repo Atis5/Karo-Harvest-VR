@@ -7,17 +7,18 @@ using UnityEngine.UI;
 
 public class HumidityAutomaticChange : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject Humidity;
     [SerializeField] private TextMeshProUGUI humidity;
-    private float humidityCount;
-    private HumidityChanger HumidityChanger;
-    private bool Continue = false;
+                     private HumidityChanger HumidityChanger;
+
+    private bool Continue = false; // Do we need this variable? Delete if not.
 
     // Start is called before the first frame update
     void Start()
     {
-        HumidityChanger = this.Humidity.GetComponent<HumidityChanger>();
-        humidity.text = humidityCount.ToString();
+        HumidityChanger = Humidity.GetComponent<HumidityChanger>();
+        humidity.text = HumidityChanger.humidityCount.ToString();
     }
 
     public void StartbrokenIncresing()
@@ -29,11 +30,15 @@ public class HumidityAutomaticChange : MonoBehaviour
     {
         while (true)
         { 
-            if (humidityCount < 100)
+            if (HumidityChanger.humidityCount < 100)
             { // if humidity < 100
-                 
-                humidityCount += 1; // increase humuidityCount and wait the specified time
-                humidity.text = humidityCount.ToString();
+
+                // increase humuidityCount and wait the specified time
+                HumidityChanger.humidityCount += 1;
+
+                // Update text but show only full numbers
+                humidity.text = Mathf.FloorToInt(HumidityChanger.humidityCount).ToString(); 
+
                 yield return new WaitForSeconds(1);
             }
             else
@@ -41,11 +46,5 @@ public class HumidityAutomaticChange : MonoBehaviour
                 yield return null;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    { 
-
     }
 }

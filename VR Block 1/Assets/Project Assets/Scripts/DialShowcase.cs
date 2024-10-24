@@ -18,7 +18,7 @@ public class DialShowcase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialInteraction = this.dialController.GetComponent<DialInteraction>();
+        dialInteraction = dialController.GetComponent<DialInteraction>();
     }
 
     // Update is called once per frame
