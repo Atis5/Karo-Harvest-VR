@@ -102,7 +102,7 @@ public class Malfunctions : MonoBehaviour
     {
         for (int i = 0; i < frequencies.Length; i++)
         {
-            frequencies[i] = Random.Range(1 + i, 3 + i); // 1,3 2,4, 3,5
+            frequencies[i] = Random.Range(3 + i, 5 + i); // 1,3 2,4, 3,5
             //Debug.Log(i + ": " + frequencies[i]);
         }
     }
@@ -129,7 +129,7 @@ public class Malfunctions : MonoBehaviour
                 }
                 //keep track of the times
                 malfunctTimes.Add(num);
-                //Debug.Log("Range: " + timePhases[i] + " to " + timePhases[i + 1] + " = " + i + ": " + num);
+                Debug.Log("Range: " + timePhases[i] + " to " + timePhases[i + 1] + " = " + i + ": " + num);
             }
         }
     }
