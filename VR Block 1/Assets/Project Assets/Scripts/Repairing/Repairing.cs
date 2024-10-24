@@ -14,7 +14,7 @@ public class Repairing : MonoBehaviour
     bool generatedPass = false;
     bool loggedIn = false;
     float timeLogged;
-    float maxTimeLogged = 3;
+    float maxTimeLogged = 8;
     string orgTxt = "Enter Access Code";
     string failTxt = "Wrong Access Code";
     int passCount;

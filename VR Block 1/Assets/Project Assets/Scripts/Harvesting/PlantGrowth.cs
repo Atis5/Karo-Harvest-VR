@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PlantGrowth : MonoBehaviour
 {
-    float growthTime = 10;
+    float growthTime = 30;
     float[] growthPeriods;
     int plantStagesNum = 3; // minus 1, as it start off with stage 1 and changes to stage 2, whilst stage 3 happens once the time is passed
     float timePassed;
