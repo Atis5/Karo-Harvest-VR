@@ -7863,7 +7863,7 @@ GameObject:
   - component: {fileID: 1677528173}
   - component: {fileID: 1677528172}
   - component: {fileID: 1677528175}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hand Scanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7968,8 +7968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06349fd909de0834da329f65ce3ce704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHand: {fileID: 743015659}
-  rightHand: {fileID: 743015659}
   timeOnScanner: 0
   timeToScan: 3
   passText: {fileID: 1780204233}
@@ -8608,9 +8606,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8226e925998ec4b904e4c069367b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  humidityBarSprite: {fileID: 0}
   humidity: {fileID: 1805803985}
+  humidityIncrementRateButton: 0
+  maxHumidityCount: 0
   humidityCount: 0
-  humidityIncrementRate: 0.1
 --- !u!114 &1805803985
 MonoBehaviour:
   m_ObjectHideFlags: 0
