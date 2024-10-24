@@ -614,6 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Humidity: {fileID: 846476942}
   humidity: {fileID: 846476943}
+  startBrokenDecreasing: 1
 --- !u!224 &105097561
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4576,6 +4577,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3810413617164536973, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
+    - {fileID: 119522249901875906, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
+    - {fileID: 487833529046422131, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 328216593633855077, guid: 085ce58b196caa446a8545c9dd388793, type: 3}
       insertIndex: -1

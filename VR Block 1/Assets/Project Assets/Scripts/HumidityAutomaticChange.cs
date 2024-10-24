@@ -12,6 +12,9 @@ public class HumidityAutomaticChange : MonoBehaviour
     [SerializeField] private TextMeshProUGUI humidity;
                      private HumidityChanger HumidityChanger;
 
+    [Header("Settings")]
+    [SerializeField] private bool startBrokenDecreasing = true;
+
     
 
     // Start is called before the first frame update
@@ -19,9 +22,14 @@ public class HumidityAutomaticChange : MonoBehaviour
     {
         HumidityChanger = Humidity.GetComponent<HumidityChanger>();
         humidity.text = HumidityChanger.humidityCount.ToString();
+
+        if (startBrokenDecreasing)
+        {
+            StartbrokenDecreasing();
+        }
     }
 
-    public void StartbrokenIncresing()
+    public void StartbrokenDecreasing()
     {
         StartCoroutine(addHumidityCount());
     } 
@@ -30,11 +38,11 @@ public class HumidityAutomaticChange : MonoBehaviour
     {
         while (true)
         { 
-            if (HumidityChanger.humidityCount < 100)
+            if (HumidityChanger.humidityCount > 0)
             { // if humidity < 100
 
                 // increase humuidityCount and wait the specified time
-                HumidityChanger.humidityCount += 1;
+                HumidityChanger.humidityCount--;
 
                 // Update text but show only full numbers
                 humidity.text = Mathf.FloorToInt(HumidityChanger.humidityCount).ToString(); 
