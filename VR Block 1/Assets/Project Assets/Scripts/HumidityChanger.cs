@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class HumidityChanger : MonoBehaviour
 {
@@ -92,5 +93,8 @@ public class HumidityChanger : MonoBehaviour
     {
         ChangeColor();
         UpdateHumidityBar();
+
+        // Keep humidityCount between 1 and 100
+        humidityCount = Mathf.Clamp(humidityCount, 1, 100);
     }
 }
