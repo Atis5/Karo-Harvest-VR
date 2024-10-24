@@ -12,7 +12,7 @@ public class HumidityAutomaticChange : MonoBehaviour
     [SerializeField] private TextMeshProUGUI humidity;
                      private HumidityChanger HumidityChanger;
 
-    private bool Continue = false; // Do we need this variable? Delete if not.
+    
 
     // Start is called before the first frame update
     void Start()
