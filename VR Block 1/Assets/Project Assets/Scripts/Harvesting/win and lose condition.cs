@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -10,15 +11,26 @@ public class winandlosecondition : MonoBehaviour
     [SerializeField]
     private int winCondition = 15; // Number of crops required to win
     [SerializeField]
-    private float timeLimit = 10f; // Time limit in seconds
-    private bool gameIsOver = false; // To track if the game is over
+    private float timeLimit = 300f; // Time limit in seconds
+    //private bool gameIsOver = false; // To track if the game is over
 
     float timePassed;
 
+    public UnityEvent<float> sendTime;
+    public UnityEvent startCalc;
+    /*
     private void Start()
     {
         // Start the timer countdown when the game begins
         //StartCoroutine(StartTimer());
+    }*/
+
+    //delay start so that malfunctions can add the listener
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(0.01f);
+        sendTime.Invoke(timeLimit);
+        startCalc.Invoke();
     }
     /*
     public void StoreHarvest()

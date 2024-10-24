@@ -14,7 +14,7 @@ public class Repairing : MonoBehaviour
     bool generatedPass = false;
     bool loggedIn = false;
     float timeLogged;
-    float maxTimeLogged = 3;
+    float maxTimeLogged = 8;
     string orgTxt = "Enter Access Code";
     string failTxt = "Wrong Access Code";
     int passCount;
@@ -55,6 +55,10 @@ public class Repairing : MonoBehaviour
                 choosingPage.SetActive(false);
                 loggedIn = false;
                 generatedPass = false;
+                //return text to original
+                enterPass.text = orgTxt;
+                enterPass.font = orgFont;
+                enterPass.fontSize = orgFontSize;
                 //log off in hand scanner
                 logOff.Invoke();
                 timeLogged = 0;

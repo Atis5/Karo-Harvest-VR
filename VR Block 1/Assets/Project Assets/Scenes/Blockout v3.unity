@@ -5071,6 +5071,7 @@ MonoBehaviour:
   harvesterMalfunctUI: {fileID: 1564835684}
   humidifierMalfunctUI: {fileID: 1212218996}
   headset: {fileID: 543565015}
+  wl: {fileID: 0}
 --- !u!4 &905468935
 Transform:
   m_ObjectHideFlags: 0
@@ -8657,7 +8658,7 @@ Transform:
   m_GameObject: {fileID: 1603061870}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 1.164, z: 0.21700001}
+  m_LocalPosition: {x: 0.75, y: 1.164, z: 0.494}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
