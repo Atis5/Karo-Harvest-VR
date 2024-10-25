@@ -614,6 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Humidity: {fileID: 846476942}
   humidity: {fileID: 846476943}
+  startBrokenDecreasing: 1
 --- !u!224 &105097561
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5051,6 +5052,7 @@ MonoBehaviour:
   harvesterMalfunctUI: {fileID: 1564835684}
   humidifierMalfunctUI: {fileID: 1212218996}
   headset: {fileID: 543565015}
+  wlScript: {fileID: 0}
 --- !u!4 &905468935
 Transform:
   m_ObjectHideFlags: 0
