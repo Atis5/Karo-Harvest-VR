@@ -57,7 +57,7 @@ public class HarvestHeadset : MonoBehaviour
     {
         //get the crop object the player is holding
         IXRSelectInteractable crop = storingSocket.GetOldestInteractableSelected();
-        Debug.Log(crop);
+        //Debug.Log(crop);
         //remove the crop object from the socket so it can be modified
         storingSocket.interactionManager.SelectExit(storingSocket, crop);
         Destroy(crop.transform.gameObject);

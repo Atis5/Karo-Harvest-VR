@@ -51,7 +51,8 @@ public class TeleportBack : MonoBehaviour
         if (other.gameObject == player)
         {
             timeOnPlatform = 0;
-            particles.Stop();
+            particles.Pause();
+            particles.Clear();
             if (justTeleported)
             {
                 justTeleported = false;
