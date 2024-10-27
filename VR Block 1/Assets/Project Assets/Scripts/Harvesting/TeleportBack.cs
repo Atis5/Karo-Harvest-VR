@@ -31,6 +31,7 @@ public class TeleportBack : MonoBehaviour
                 timeOnPlatform = 0;
                 StartCoroutine(Delay());
             }
+            Debug.Log("teleporting");
         }
     }
 

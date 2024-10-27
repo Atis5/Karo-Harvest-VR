@@ -33,6 +33,8 @@ public class HarvestHeadset : MonoBehaviour
         this.transform.position = standSocket.transform.position;
         //move headset to original rotation
         this.transform.rotation = standSocket.transform.rotation;
+
+        //sDebug.Log("Headset is on");
     }
 
     public void HeadsetOff()

@@ -39,6 +39,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8165323563874738709}
     m_Modifications:
+    - target: {fileID: 57621209028154949, guid: aba8d954389e6214a81d7706d1d07e5e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4874318178029281511, guid: aba8d954389e6214a81d7706d1d07e5e, type: 3}
       propertyPath: m_Name
       value: 2nd stage_1
@@ -206,6 +210,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8801397303747288073, guid: 8bf4d57d17252ab46ac0a98a0aeb6964, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -293,9 +301,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5080043528642780559, guid: c50786d898eeb1c4895a7f7fc55b2480, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5237707426857106018, guid: c50786d898eeb1c4895a7f7fc55b2480, type: 3}
       propertyPath: m_Name
-      value: plant stand Variant
+      value: plant stages
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -368,6 +380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8165323563874738709}
     m_Modifications:
+    - target: {fileID: -1776796027967311707, guid: 50f0e547603511642adfcdfe41496383, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1168830464645532051, guid: 50f0e547603511642adfcdfe41496383, type: 3}
       propertyPath: m_LocalScale.x
       value: 8.099008
@@ -441,9 +457,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1978018884294955817, guid: 50f0e547603511642adfcdfe41496383, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6257735157801172659}
-    - targetCorrespondingSourceObject: {fileID: 1978018884294955817, guid: 50f0e547603511642adfcdfe41496383, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6404871632089831227}
   m_SourcePrefab: {fileID: 100100000, guid: 50f0e547603511642adfcdfe41496383, type: 3}
 --- !u!4 &7462203468213274187 stripped
 Transform:
@@ -578,7 +591,7 @@ MonoBehaviour:
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
-  m_TightenScale: 0.1
+  m_TightenScale: 1
   m_ThrowOnDetach: 1
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
@@ -604,24 +617,3 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
---- !u!65 &6404871632089831227
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7837602728824675569}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0035829132, y: 0.0070705893, z: 0.011171899}
-  m_Center: {x: -0.00023820822, y: 0.00017105995, z: 0.0055760616}
