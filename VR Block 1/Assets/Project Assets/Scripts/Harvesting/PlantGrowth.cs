@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -12,6 +13,8 @@ public class PlantGrowth : MonoBehaviour
     int plantStagesNum = 3; // minus 1, as it start off with stage 1 and changes to stage 2, whilst stage 3 happens once the time is passed
     float timePassed;
     int currStage = -1;
+
+    [SerializeField] TMP_Text txt;
 
     //Quaternion orgRotation;
 
@@ -29,6 +32,14 @@ public class PlantGrowth : MonoBehaviour
         //keep track of time in seconds
         timePassed += Time.deltaTime;
         growPlant();
+        //update countdown text over the plant (shows how much time left in growth)
+        if(timePassed < growthTime)
+        {
+            txt.text = (growthTime - timePassed).ToString("F0"); //F0 = 0 decimal points
+        } else
+        {
+            txt.text = "READY";
+        }
     }
 
     //makes an array of the time for the plant to change stages (divided equally)

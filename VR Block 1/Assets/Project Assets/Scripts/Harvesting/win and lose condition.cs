@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class winandlosecondition : MonoBehaviour
 {
-    public int cropCount = 0; // Tracks the number of crops collected
+    int cropCount = 0; // Tracks the number of crops collected
     [SerializeField]
     private int winCondition = 15; // Number of crops required to win
     [SerializeField]
@@ -16,8 +16,12 @@ public class winandlosecondition : MonoBehaviour
 
     float timePassed;
 
+    //events malfunctions
     public UnityEvent<float> sendTime;
     public UnityEvent startCalc;
+    //events for changing Quota
+    public UnityEvent<int , int> quotaChange;
+
     /*
     private void Start()
     {
@@ -25,12 +29,13 @@ public class winandlosecondition : MonoBehaviour
         //StartCoroutine(StartTimer());
     }*/
 
-    //delay start so that malfunctions can add the listener
+    //delay start so that the other scripts can add the listener
     IEnumerator Start()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.001f);
         sendTime.Invoke(timeLimit);
         startCalc.Invoke();
+        quotaChange.Invoke(cropCount, winCondition);
     }
     /*
     public void StoreHarvest()
@@ -85,7 +90,8 @@ public class winandlosecondition : MonoBehaviour
     public void addCrop()
     {
         cropCount++;
-        Debug.Log(cropCount.ToString());
+        quotaChange.Invoke(cropCount, winCondition);
+        //Debug.Log(cropCount.ToString());
     }
 
     // Method to handle winning
