@@ -17,8 +17,6 @@ public class HumidityChanger : MonoBehaviour
     [SerializeField] private float maxHumidityCount;
     [Tooltip("Set the minimum and the maximum value for correct humidity.")]
     [SerializeField] private float[] correctHumidity;
-    [Tooltip("How many seconds a plant can survive in wrong humidity before it dies.")]
-    [SerializeField] private float timeToDie;
 
     [Header("Information")]
     public float humidityCount;
@@ -37,7 +35,7 @@ public class HumidityChanger : MonoBehaviour
         humidity.text = humidityCount.ToString();
     }
 
-    private void SetCorrectHumidity()
+    void SetCorrectHumidity()
     {
         if (humidityCount <= correctHumidity[0] || humidityCount >= correctHumidity[1])
         {
@@ -52,7 +50,7 @@ public class HumidityChanger : MonoBehaviour
     /// <summary>
     /// Changes the color of the humidity bar and the screen's background.
     /// </summary>
-    public void ChangeColor()
+    void ChangeColor()
     {
         if (isHumidityCorrect)
         {
@@ -66,7 +64,7 @@ public class HumidityChanger : MonoBehaviour
         }
     }
 
-    public void UpdateHumidityBar()
+    void UpdateHumidityBar()
     {
         humidityBarSprite.fillAmount = humidityCount / maxHumidityCount;
     }

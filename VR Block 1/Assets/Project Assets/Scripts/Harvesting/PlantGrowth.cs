@@ -7,7 +7,14 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PlantGrowth : MonoBehaviour
 {
-    float growthTime = 10;
+    // Reference to other scripts
+    private PlantSettings plantSettings;
+    private HumidityChanger humidityChanger;
+
+    // These variables are grabbed from 'PlantSettings.cs'. Do not set them here.
+    private float growthTime;
+    private float timeToDie;
+
     float[] growthPeriods;
     int plantStagesNum = 3; // minus 1, as it start off with stage 1 and changes to stage 2, whilst stage 3 happens once the time is passed
     float timePassed;
@@ -18,6 +25,13 @@ public class PlantGrowth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlantSettings plantSettings = GetComponentInParent<PlantSettings>();
+        _ = GetComponent<HumidityChanger>();
+
+        // Grab variables from settings
+        growthTime = plantSettings.GrowthTime;
+        timeToDie = plantSettings.TimeToDie;
+
         growthPeriods = calculateGrowthPeriods();
 
         //orgRotation = transform.rotation;
