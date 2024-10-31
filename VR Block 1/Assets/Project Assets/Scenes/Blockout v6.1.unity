@@ -9390,8 +9390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a2c020447cbc84ea5760ee78b075c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthTime: 10
-  timeToDie: 10
+  growthTime: 5
+  timeToDie: 1
 --- !u!224 &1524567527 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 328216593633855077, guid: 085ce58b196caa446a8545c9dd388793, type: 3}

@@ -18,6 +18,8 @@ public class PlantGrowth : MonoBehaviour
     private float _timeToDie;
     private bool _isHumidityCorrect;
 
+    private bool isPlantDead = false;
+
     float[] growthPeriods;
     int plantStagesNum = 3; // minus 1, as it start off with stage 1 and changes to stage 2, whilst stage 3 happens once the time is passed
     float timePassed;
@@ -86,33 +88,60 @@ public class PlantGrowth : MonoBehaviour
 
     void growPlant()
     {
-        //Debug.Log("growing");
-        for (int i = 0; i < plantStagesNum; i++)
+        if (!isPlantDead)
         {
-            //compares the time and the growth period. currStage makes sure the code in the if statement is ran only once 
-            if (timePassed >= growthPeriods[i] && currStage == i - 1)
+            //Debug.Log("growing");
+            for (int i = 0; i < plantStagesNum; i++)
             {
-                //Debug.Log("stage " + (i + 1));
-                //activates the visibility of the next plant stage
-                this.transform.GetChild(i).gameObject.SetActive(true);
-                currStage = i;
-                if (i != 0)
+                //compares the time and the growth period. currStage makes sure the code in the if statement is ran only once 
+                if (timePassed >= growthPeriods[i] && currStage == i - 1)
                 {
-                    //disables the visibility of the previous plant stage
-                    this.transform.GetChild(i - 1).gameObject.SetActive(false);
-                }
-                if (i == plantStagesNum - 1)
-                {
-                    //Debug.Log("growth done");
-                    //create a clone of the grown crop
-                    GameObject cropClone = Instantiate(this.transform.GetChild(plantStagesNum - 1).gameObject, this.transform);
-                    //make the original grown crop invisible so that the player picks up the clone - ensures the object wont be named X(Clone)(Clone)(Clone) etc.
-                    this.transform.GetChild(plantStagesNum-1).gameObject.SetActive(false);
+                    //Debug.Log("stage " + (i + 1));
+                    //activates the visibility of the next plant stage
+                    this.transform.GetChild(i).gameObject.SetActive(true);
+                    currStage = i;
+                    if (i != 0)
+                    {
+                        //disables the visibility of the previous plant stage
+                        this.transform.GetChild(i - 1).gameObject.SetActive(false);
+                    }
+                    if (i == plantStagesNum - 1)
+                    {
+                        //Debug.Log("growth done");
+                        //create a clone of the grown crop
+                        GameObject cropClone = Instantiate(this.transform.GetChild(plantStagesNum - 1).gameObject, this.transform);
+                        //make the original grown crop invisible so that the player picks up the clone - ensures the object wont be named X(Clone)(Clone)(Clone) etc.
+                        this.transform.GetChild(plantStagesNum - 1).gameObject.SetActive(false);
 
-                    //make it invisible
-                    //cropClone.SetActive(false);
-                    //make it the 3rd child so that the growth process continues
-                    //cropClone.transform.SetSiblingIndex(plantStagesNum-1);
+                        //make it invisible
+                        //cropClone.SetActive(false);
+                        //make it the 3rd child so that the growth process continues
+                        //cropClone.transform.SetSiblingIndex(plantStagesNum-1);
+                    }
+                }
+
+                // Replace the current plant object with dead plant object
+                if (timeToDiePassed >= _timeToDie)
+                {
+
+                    // Check if one of the stages is active and disable it.
+                    if (this.transform.GetChild(i).gameObject.activeSelf == true)
+                    {
+                        Debug.Log("KILLING CHILD NUMBER " + (i));
+                        this.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+
+                    // Otherwise disable the copy of the plant.
+                    else
+                    {
+                        Debug.Log("KILLING COPY CHILD");
+                        this.transform.GetChild(5).gameObject.SetActive(false);
+                    }
+
+                    // Show the dead plant
+                    this.transform.GetChild(plantStagesNum).gameObject.SetActive(true);
+
+                    isPlantDead = true;
                 }
             }
         }
@@ -151,12 +180,21 @@ public class PlantGrowth : MonoBehaviour
         }
 
         // Replace the current plant object with dead plant object
-        if (timeToDiePassed >= _timeToDie)
+        /*if (timeToDiePassed >= _timeToDie)
         {
-            Debug.Log("PLANT IS KILL! ;-;");
-            this.transform.GetChild(5).gameObject.SetActive(false);
+            //Debug.Log("PLANT IS KILL! ;-;");
+            if (this.transform.GetChild().gameObject.activeSelf == true)
+            {
+                Debug.Log("KILLING CHILD NUMBER" + (plantStagesNum - 1));
+                this.transform.GetChild(plantStagesNum - 1).gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("KILLING COPY CHILD");
+                this.transform.GetChild(5).gameObject.SetActive(false);
+            }
             this.transform.GetChild(3).gameObject.SetActive(true);
-        }
+        }*/
     }
 
     /*public void reposition()
