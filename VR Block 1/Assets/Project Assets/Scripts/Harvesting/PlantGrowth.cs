@@ -8,17 +8,20 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PlantGrowth : MonoBehaviour
 {
-    // Reference to other scripts
+    // References
     private PlantSettings plantSettings;
     private HumidityChanger humidityChanger;
+    private GameObject humidityController;
 
-    // These variables are grabbed from 'PlantSettings.cs'. Do not set them here.
-    private float growthTime;
-    private float timeToDie;
+    // Referenced variables. Do not change them here.
+    private float _growthTime;
+    private float _timeToDie;
+    private bool _isHumidityCorrect;
 
     float[] growthPeriods;
     int plantStagesNum = 3; // minus 1, as it start off with stage 1 and changes to stage 2, whilst stage 3 happens once the time is passed
     float timePassed;
+    float timeToDiePassed = 0;
     int currStage = -1;
 
     [SerializeField] TMP_Text txt;
@@ -28,12 +31,15 @@ public class PlantGrowth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlantSettings plantSettings = GetComponentInParent<PlantSettings>();
-        _ = GetComponent<HumidityChanger>();
+        // Grab references.
+        plantSettings = GetComponentInParent<PlantSettings>();
+        humidityController = GameObject.Find("Humidity Controller");
+        humidityChanger = humidityController.GetComponent<HumidityChanger>();
 
-        // Grab variables from settings
-        growthTime = plantSettings.GrowthTime;
-        timeToDie = plantSettings.TimeToDie;
+        // Grab variables from references.
+        _growthTime = plantSettings.growthTime;
+        _timeToDie = plantSettings.timeToDie;
+        
 
         growthPeriods = calculateGrowthPeriods();
 
@@ -45,11 +51,14 @@ public class PlantGrowth : MonoBehaviour
     {
         //keep track of time in seconds
         timePassed += Time.deltaTime;
+
         growPlant();
+        KillPlant();
+
         //update countdown text over the plant (shows how much time left in growth)
-        if(timePassed < growthTime)
+        if(timePassed < _growthTime)
         {
-            txt.text = (growthTime - timePassed).ToString("F0"); //F0 = 0 decimal points
+            txt.text = (_growthTime - timePassed).ToString("F0"); //F0 = 0 decimal points
         } else
         {
             txt.text = "READY";
@@ -60,7 +69,7 @@ public class PlantGrowth : MonoBehaviour
     float[] calculateGrowthPeriods()
     {
         //divide the duration of growth and number of plant stages
-        float periodTime = growthTime / plantStagesNum;
+        float periodTime = _growthTime / plantStagesNum;
         //create an array to keep the times
         float[] periodArray = new float[plantStagesNum];
         
@@ -117,6 +126,37 @@ public class PlantGrowth : MonoBehaviour
         currStage = -1;
         //Debug.Log("Picked up");
         //Debug.Log("This object: " + this.gameObject.name);
+    }
+
+
+    /// <summary>
+    /// Calculates how much time has passed in incorrect humidity and kills the plant if it's longer than "Time To Die".
+    /// </summary>
+    private void KillPlant()
+    {
+        // Grab reference from another script
+        _isHumidityCorrect = humidityChanger.isHumidityCorrect;
+
+        // Calculate how much time has passed in the wrong humidity.
+        if (_isHumidityCorrect == false)
+        {
+            timeToDiePassed += Time.deltaTime;
+            // Debug.Log("Wrong humidity for " + timeToDiePassed + " seconds!");
+        }
+
+        // Reset the timer to 0 if humidity is correct.
+        else if (_isHumidityCorrect == true && timeToDiePassed != 0)
+        {
+            timeToDiePassed = 0;
+        }
+
+        // Replace the current plant object with dead plant object
+        if (timeToDiePassed >= _timeToDie)
+        {
+            Debug.Log("PLANT IS KILL! ;-;");
+            this.transform.GetChild(5).gameObject.SetActive(false);
+            this.transform.GetChild(3).gameObject.SetActive(true);
+        }
     }
 
     /*public void reposition()

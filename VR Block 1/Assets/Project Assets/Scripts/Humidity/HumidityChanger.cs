@@ -47,6 +47,11 @@ public class HumidityChanger : MonoBehaviour
         }
     }
 
+    void UpdateHumidityBar()
+    {
+        humidityBarSprite.fillAmount = humidityCount / maxHumidityCount;
+    }
+
     /// <summary>
     /// Changes the color of the humidity bar and the screen's background.
     /// </summary>
@@ -64,20 +69,16 @@ public class HumidityChanger : MonoBehaviour
         }
     }
 
-    void UpdateHumidityBar()
-    {
-        humidityBarSprite.fillAmount = humidityCount / maxHumidityCount;
-    }
-
     void Update()
     {
         SetCorrectHumidity();
-        ChangeColor();
         UpdateHumidityBar();
+        ChangeColor();
 
         // Keep humidityCount between 1 and 100
         humidityCount = Mathf.Clamp(humidityCount, 1, 100);
     }
+
 
 
     //  \/\/\/ METHODS FOR UNITY EVENTS \/\/\/ 

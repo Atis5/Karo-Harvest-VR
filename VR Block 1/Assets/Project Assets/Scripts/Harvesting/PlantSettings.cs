@@ -7,9 +7,9 @@ public class PlantSettings : MonoBehaviour
     [Header("Settings")]
 
     [Tooltip("How many seconds it takes for a plant to fully grow. Divided by 3 for each stage.")]
-    public float GrowthTime;
+    public float growthTime;
 
     [Tooltip("How many seconds a plant can survive in wrong humidity before it dies.")]
-    public float TimeToDie;
+    public float timeToDie;
 
 }
