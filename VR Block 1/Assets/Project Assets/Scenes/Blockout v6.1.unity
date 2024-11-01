@@ -3149,6 +3149,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7393891151969531382, guid: b8d4d34b68f185a44982b9456fd72772, type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9414,8 +9418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a2c020447cbc84ea5760ee78b075c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthTime: 10
-  timeToDie: 5
+  growthTime: 30
+  timeToDie: 20
 --- !u!224 &1524567527 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 328216593633855077, guid: 085ce58b196caa446a8545c9dd388793, type: 3}

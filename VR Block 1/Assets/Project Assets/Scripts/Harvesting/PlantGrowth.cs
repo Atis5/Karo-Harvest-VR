@@ -28,6 +28,10 @@ public class PlantGrowth : MonoBehaviour
 
     [SerializeField] TMP_Text txt;
 
+    GameObject deadCropClone;
+    GameObject cropClone;
+    GameObject currPlant;
+
     //Quaternion orgRotation;
 
     // Start is called before the first frame update
@@ -56,14 +60,18 @@ public class PlantGrowth : MonoBehaviour
 
         growPlant();
         DeathTimer();
+        KillPlant();
 
         //update countdown text over the plant (shows how much time left in growth)
-        if(timePassed < _growthTime)
+        if(timePassed < _growthTime && !isPlantDead)
         {
             txt.text = (_growthTime - timePassed).ToString("F0"); //F0 = 0 decimal points
+        } else if (isPlantDead)
+        {
+            txt.text = "DEAD :(";
         } else
         {
-            txt.text = "READY";
+            txt.text = "READY :)";
         }
     }
 
@@ -98,7 +106,8 @@ public class PlantGrowth : MonoBehaviour
                     {
                         //Debug.Log("stage " + (i + 1));
                         //activates the visibility of the next plant stage
-                        this.transform.GetChild(i).gameObject.SetActive(true);
+                        currPlant = this.transform.GetChild(i).gameObject;
+                        currPlant.SetActive(true);
                         currStage = i;
 
                         if (i != 0)
@@ -111,7 +120,7 @@ public class PlantGrowth : MonoBehaviour
                         {
                             //Debug.Log("growth done");
                             //create a clone of the grown crop
-                            GameObject cropClone = Instantiate(this.transform.GetChild(plantStagesNum - 1).gameObject, this.transform);
+                            cropClone = Instantiate(this.transform.GetChild(plantStagesNum - 1).gameObject, this.transform);
                             //make the original grown crop invisible so that the player picks up the clone - ensures the object wont be named X(Clone)(Clone)(Clone) etc.
                             this.transform.GetChild(plantStagesNum - 1).gameObject.SetActive(false);
 
@@ -122,40 +131,36 @@ public class PlantGrowth : MonoBehaviour
                         }
 
                     }
-
-
-                    // \/ \/ \/ CHRIS' PART \/ \/ \/
-
-                    // Replace the current plant object with dead plant object
-                    if (timeToDiePassed >= _timeToDie && !isPlantDead)
-                    {
-                        isPlantDead = true;
-
-                        Debug.Log("KILLING CHILD NUMBER " + (i));
-
-                        // Check if one of the stages is active and disable it.
-                        if (this.transform.GetChild(i).gameObject.activeSelf == true)
-                        {
-                            this.transform.GetChild(i).gameObject.SetActive(false);
-                        }
-
-                        // Otherwise disable the copy of the plant.
-                        else if (this.transform.GetChild(plantStagesNum+2).gameObject.activeSelf == true)
-                        {
-                            Debug.Log("KILLING CHILD'S COPY");
-                            Destroy(this.transform.GetChild(plantStagesNum+2).gameObject);
-                        }
-
-                        // Show the dead plant
-                        GameObject deadCropClone = Instantiate(this.transform.GetChild(plantStagesNum).gameObject, this.transform);
-                        deadCropClone.SetActive(true);
-                }
-
-                    // /\ /\ /\ CHRIS' PART /\ /\/ \
             }
         }
     }
 
+    void KillPlant()
+    {
+        // \/ \/ \/ CHRIS' PART \/ \/ \/
+
+        // Replace the current plant object with dead plant object
+        if (timeToDiePassed >= _timeToDie && !isPlantDead)
+        {
+            isPlantDead = true;
+
+            currPlant.SetActive(false);
+            Debug.Log(currPlant + " is dead");
+
+            // Otherwise disable the copy of the plant.
+            if (cropClone != null)
+            {
+                Debug.Log("KILLING CHILD'S COPY");
+                Destroy(cropClone);
+            }
+
+            // Show the dead plant
+            deadCropClone = Instantiate(this.transform.GetChild(plantStagesNum).gameObject, this.transform);
+            deadCropClone.SetActive(true);
+        }
+
+        // /\ /\ /\ CHRIS' PART /\ /\/ \
+    }
     //in first select entered of grown stage of the plant
     public void Harvest()
     {
@@ -191,8 +196,10 @@ public class PlantGrowth : MonoBehaviour
 
     public void DestroyPlant()
     {
-        Destroy(this.gameObject);
+        Destroy(deadCropClone);
+        timeToDiePassed = 0;
         isPlantDead = false;
+        Harvest();
     }
 
     /*public void reposition()
