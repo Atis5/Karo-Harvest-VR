@@ -21,35 +21,61 @@ public class HumidityChanger : MonoBehaviour
     [Header("Information")]
     public float humidityCount;
     public bool isHumidityCorrect = true;
+    private bool m_humidifierMalfunt;
+    private string humidityStatusText;
+    private string humidityStatusUpdate;
 
     [Header("References")]
     [SerializeField] private Image image;
     [SerializeField] private Image humidityBarSprite;
-    [SerializeField] private TextMeshProUGUI humidity;
+    [SerializeField] private TextMeshProUGUI humidityNumber;
+    [SerializeField] private TextMeshProUGUI humidityStatus;
+    [SerializeField] private Malfunctions malfunctions;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        humidity = GetComponent<TextMeshProUGUI>();
-        humidity.text = humidityCount.ToString();
+        humidityNumber = humidityNumber.GetComponent<TextMeshProUGUI>();
+        humidityNumber.text = humidityCount.ToString();
+        humidityStatus = humidityStatus.GetComponent<TextMeshProUGUI>();
+        humidityStatusText = humidityStatus.text;
     }
 
     void SetCorrectHumidity()
     {
-        if (humidityCount <= correctHumidity[0] || humidityCount >= correctHumidity[1])
-        {
-            isHumidityCorrect = false;
-        }
-        else
-        {
-            isHumidityCorrect = true;
-        }
+            if (humidityCount <= correctHumidity[0] || humidityCount >= correctHumidity[1])
+            {
+                isHumidityCorrect = false;
+            }
+            else
+            {
+                isHumidityCorrect = true;
+            }
     }
 
     void UpdateHumidityBar()
     {
         humidityBarSprite.fillAmount = humidityCount / maxHumidityCount;
+    }
+
+
+    void UpdateHumidityStatus()
+    {
+            if (humidityCount <= correctHumidity[0])
+            {
+                humidityStatusUpdate = " too small! :(";
+            }
+            else if (humidityCount >= correctHumidity[1])
+            {
+                humidityStatusUpdate =  " too high! :(";
+            }
+            else
+            {
+                humidityStatusUpdate = " just right! :)";
+            }
+
+            humidityStatus.text = humidityStatusText + humidityStatusUpdate;
     }
 
     /// <summary>
@@ -73,10 +99,14 @@ public class HumidityChanger : MonoBehaviour
     {
         SetCorrectHumidity();
         UpdateHumidityBar();
+        UpdateHumidityStatus();
         ChangeColor();
 
         // Keep humidityCount between 1 and 100
         humidityCount = Mathf.Clamp(humidityCount, 1, 100);
+
+        // Reference the variable from Malfuctions.cs.
+        m_humidifierMalfunt = malfunctions.humidifierMalfunt;
     }
 
 
@@ -87,9 +117,12 @@ public class HumidityChanger : MonoBehaviour
     /// Increases Humidity by 1. Use it for one-time presses.
     /// </summary>
     public void IncreaseHumidity()
-    {      
-        humidityCount++;
-        humidity.text = humidityCount.ToString();
+    {
+        if (!m_humidifierMalfunt)
+        {
+            humidityCount++;
+            humidityNumber.text = humidityCount.ToString();
+        }
     }
 
     /// <summary>
@@ -97,10 +130,10 @@ public class HumidityChanger : MonoBehaviour
     /// </summary>
     public void DecreaseHumidity()
     {
-        if (humidityCount > 0)
+        if (!m_humidifierMalfunt)
         {
             humidityCount--;
-            humidity.text = humidityCount.ToString();
+            humidityNumber.text = humidityCount.ToString();
         }
     }
 
@@ -109,8 +142,11 @@ public class HumidityChanger : MonoBehaviour
     /// </summary>
     public void ContinueIncreasingHumidity()
     {
-        humidityCount += humidityIncrementRateButton;
-        humidity.text = Mathf.FloorToInt(humidityCount).ToString();
+        if (!m_humidifierMalfunt)
+        {
+            humidityCount += humidityIncrementRateButton;
+            humidityNumber.text = Mathf.FloorToInt(humidityCount).ToString();
+        }
     }
 
     /// <summary>
@@ -118,8 +154,11 @@ public class HumidityChanger : MonoBehaviour
     /// </summary>
     public void ContinueDecreasingHumidity()
     {
-        humidityCount -= humidityIncrementRateButton;
-        humidity.text = Mathf.FloorToInt(humidityCount).ToString();
+        if (!m_humidifierMalfunt)
+        {
+            humidityCount -= humidityIncrementRateButton;
+            humidityNumber.text = Mathf.FloorToInt(humidityCount).ToString();
+        }
     }
 
     /// <summary>
@@ -128,6 +167,6 @@ public class HumidityChanger : MonoBehaviour
     public void EqualizeHumidity()
     {
         humidityCount = Mathf.FloorToInt(humidityCount);
-        humidity.text = humidityCount.ToString();
+        humidityNumber.text = humidityCount.ToString();
     }
 }

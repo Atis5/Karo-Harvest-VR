@@ -17,7 +17,7 @@ public class Malfunctions : MonoBehaviour
     [SerializeField] int numPhases = 3;
     [SerializeField] float maxTime;
 
-    bool humidifierMalfunt, harvesterMalfunt = false;
+    public bool humidifierMalfunt, harvesterMalfunt = false;
     [SerializeField] List<string> allMachines;
     [SerializeField] TextMeshPro humidifierTXT, harvesterTXT;
     [SerializeField] GameObject harvesterMalfunctUI, humidifierMalfunctUI;
