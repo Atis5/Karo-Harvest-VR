@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Project Assets/Scenes/dorka 2.0.unity
     guid: 3d63981dfdb220e4592302c31d615eb8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleSceneHandInteraction.unity
     guid: 3496b7f9194c23749bded31b28908b1a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project Assets/Scenes/KCMerge.unity
     guid: 737a60acdf435b0459e6fc5df3042ba0
   - enabled: 1

@@ -103,8 +103,8 @@ public class HarvestHeadset : MonoBehaviour
             this.transform.rotation = standSocket.transform.rotation;
             //Debug.Log("returning");
 
-            leftHandChangeMaterial.ChangeToOldMaterial();
-            rightHandChangeMaterial.ChangeToOldMaterial();
+            //leftHandChangeMaterial.ChangeToOldMaterial();
+            //rightHandChangeMaterial.ChangeToOldMaterial();
         }
     }
 }

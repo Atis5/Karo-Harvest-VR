@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using static UnityEditor.ShaderData;
 
 public class Malfunctions : MonoBehaviour
 {

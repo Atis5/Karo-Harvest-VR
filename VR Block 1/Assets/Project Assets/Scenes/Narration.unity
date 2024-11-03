@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowNarration: {fileID: 36495904}
-  narrationSentance1: "Welcome! \nThis is plantation #527"
+  narrationSentance1: "Welcome! \nThis is plantation #235"
   narrationSentance2: The management AI for this plantation malfunctioned and according
     to our database you are the most fitting emergency farmer volunteer while the
     AI is being repaired.
@@ -1260,7 +1260,7 @@ Transform:
   m_GameObject: {fileID: 698566605}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.599, z: 0}
+  m_LocalPosition: {x: 0, y: 0.815, z: 0}
   m_LocalScale: {x: 2.5, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1538,8 +1538,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.6844043, z: 1}
+  m_Center: {x: 0, y: 0.34220126, z: 0}
 --- !u!23 &1150732441
 MeshRenderer:
   m_ObjectHideFlags: 0
