@@ -63,6 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7319966663895449011}
   - component: {fileID: 7388541965766216243}
+  - component: {fileID: -3050902166342169201}
   m_Layer: 6
   m_Name: Left Hand
   m_TagString: Untagged
@@ -107,6 +108,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3050902166342169201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021597656392520396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb068994fb5e80940938456d2a84efaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newMaterial: {fileID: 2100000, guid: d97333802258e714fb82f30f60446c9e, type: 2}
 --- !u!1001 &4819759748490959959
 PrefabInstance:
   m_ObjectHideFlags: 0

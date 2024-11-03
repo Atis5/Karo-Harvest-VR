@@ -18,6 +18,10 @@ public class HarvestHeadset : MonoBehaviour
 
     Vector3 orgPos;
 
+    [Header("Hand References")]
+    [SerializeField] private ChangeMaterial leftHandChangeMaterial;
+    [SerializeField] private ChangeMaterial rightHandChangeMaterial;
+
     private void Start()
     {
         transitionScreen.SetActive(false);
@@ -39,6 +43,10 @@ public class HarvestHeadset : MonoBehaviour
         this.transform.rotation = standSocket.transform.rotation;
 
         //sDebug.Log("Headset is on");
+
+        leftHandChangeMaterial.ChangeToNewMaterial();
+        rightHandChangeMaterial.ChangeToNewMaterial();
+
     }
 
     public void HeadsetOff()
@@ -94,6 +102,9 @@ public class HarvestHeadset : MonoBehaviour
             //move headset to original rotation
             this.transform.rotation = standSocket.transform.rotation;
             //Debug.Log("returning");
+
+            leftHandChangeMaterial.ChangeToOldMaterial();
+            rightHandChangeMaterial.ChangeToOldMaterial();
         }
     }
 }
