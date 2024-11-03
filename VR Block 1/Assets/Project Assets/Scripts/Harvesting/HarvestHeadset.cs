@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class HarvestHeadset : MonoBehaviour
 {
-    [SerializeField] GameObject transitionScreen, player, farmSpawn;
+    [SerializeField] GameObject transitionScreen, player, farmSpawn, fieldWalls;
     [SerializeField] int delayTime = 2;
     [SerializeField] XRSocketInteractor snapSocket;
     [SerializeField] XRSocketInteractor storingSocket;
@@ -27,6 +27,7 @@ public class HarvestHeadset : MonoBehaviour
     {
         //make screen black for a few seconds
         transitionScreen.SetActive(true);
+        fieldWalls.SetActive(true);
         StartCoroutine(Delay());
         //move player to farm
         player.transform.position = farmSpawn.transform.position;
@@ -44,6 +45,7 @@ public class HarvestHeadset : MonoBehaviour
     {
         //make screen black for a few seconds
         transitionScreen.SetActive(true);
+        fieldWalls.SetActive(false);
         StartCoroutine(Delay());
         //move player back to office facing the right way
         player.transform.position = orgPos;
