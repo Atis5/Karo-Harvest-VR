@@ -76,7 +76,7 @@ public class winandlosecondition : MonoBehaviour
 
     private void Update()
     {
-        timePassed = Time.time;
+        timePassed = Time.timeSinceLevelLoad;
         if (cropCount >= winCondition)
         {
             WinGame();
