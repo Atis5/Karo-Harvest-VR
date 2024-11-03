@@ -16,9 +16,12 @@ public class HarvestHeadset : MonoBehaviour
 
     public UnityEvent countCrop;
 
+    Vector3 orgPos;
+
     private void Start()
     {
         transitionScreen.SetActive(false);
+        orgPos = player.transform.position;
     }
     public void HeadsetOn()
     {
@@ -43,7 +46,7 @@ public class HarvestHeadset : MonoBehaviour
         transitionScreen.SetActive(true);
         StartCoroutine(Delay());
         //move player back to office facing the right way
-        player.transform.position = Vector3.zero;
+        player.transform.position = orgPos;
     }
 
     IEnumerator Delay()
