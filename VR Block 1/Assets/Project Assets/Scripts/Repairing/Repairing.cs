@@ -27,6 +27,9 @@ public class Repairing : MonoBehaviour
     //for testing
     [SerializeField] bool skipPass = false;
 
+    [Tooltip("Reference audio from 'ChooseMachine' object")]
+    [SerializeField] private AudioSource loginAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -116,6 +119,7 @@ public class Repairing : MonoBehaviour
             {
                 loginPage.SetActive(false);
                 choosingPage.SetActive(true);
+                loginAudio.Play();
                 loggedIn = true;
             } else
             {

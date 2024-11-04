@@ -26,6 +26,10 @@ public class Malfunctions : MonoBehaviour
 
     [SerializeField] winandlosecondition wlScript;
 
+    //Audio references
+    [SerializeField] private AudioSource humidifierAudio;
+    [SerializeField] private AudioSource harvesterAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -140,10 +144,12 @@ public class Malfunctions : MonoBehaviour
         if (allMachines[rand] == "Humidifier")
         {
             //Debug.Log("Humidifier broken");
+            humidifierAudio.Play();
             breakHumidifier();
         } else if (allMachines[rand] == "Harvester")
         {
             //Debug.Log("Harvester broken");
+            harvesterAudio.Play();
             breakHarvester();
         } else
         {
