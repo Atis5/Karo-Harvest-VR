@@ -26,6 +26,7 @@ public class HarvestHeadset : MonoBehaviour
     {
         transitionScreen.SetActive(false);
         orgPos = player.transform.position;
+        fieldWalls.SetActive(false);
     }
     public void HeadsetOn()
     {

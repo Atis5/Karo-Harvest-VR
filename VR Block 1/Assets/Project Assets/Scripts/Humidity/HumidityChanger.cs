@@ -144,7 +144,7 @@ public class HumidityChanger : MonoBehaviour
     {
         if (!m_humidifierMalfunt)
         {
-            humidityCount += humidityIncrementRateButton;
+            humidityCount += humidityIncrementRateButton * Time.deltaTime;
             humidityNumber.text = Mathf.FloorToInt(humidityCount).ToString();
         }
     }
@@ -156,7 +156,7 @@ public class HumidityChanger : MonoBehaviour
     {
         if (!m_humidifierMalfunt)
         {
-            humidityCount -= humidityIncrementRateButton;
+            humidityCount -= humidityIncrementRateButton * Time.deltaTime;
             humidityNumber.text = Mathf.FloorToInt(humidityCount).ToString();
         }
     }
