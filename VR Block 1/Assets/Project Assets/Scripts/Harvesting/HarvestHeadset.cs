@@ -22,6 +22,12 @@ public class HarvestHeadset : MonoBehaviour
     [SerializeField] private ChangeMaterial leftHandChangeMaterial;
     [SerializeField] private ChangeMaterial rightHandChangeMaterial;
 
+    [Header ("Audio References")]
+    [Tooltip("Grab reference in 'Camera Offset' object")]
+    [SerializeField] private AudioSource powerUpSound;
+    [Tooltip("Grab reference in 'Camera Offset' object")]
+    [SerializeField] private AudioSource powerDownSound;
+
     private void Start()
     {
         transitionScreen.SetActive(false);
@@ -31,6 +37,7 @@ public class HarvestHeadset : MonoBehaviour
     {
         //make screen black for a few seconds
         transitionScreen.SetActive(true);
+        powerUpSound.Play();
         fieldWalls.SetActive(true);
         StartCoroutine(Delay());
         //move player to farm
@@ -53,6 +60,7 @@ public class HarvestHeadset : MonoBehaviour
     {
         //make screen black for a few seconds
         transitionScreen.SetActive(true);
+        powerDownSound.Play();
         fieldWalls.SetActive(false);
         StartCoroutine(Delay());
         //move player back to office facing the right way
