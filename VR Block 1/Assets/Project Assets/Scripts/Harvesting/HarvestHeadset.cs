@@ -57,6 +57,9 @@ public class HarvestHeadset : MonoBehaviour
         StartCoroutine(Delay());
         //move player back to office facing the right way
         player.transform.position = orgPos;
+
+        leftHandChangeMaterial.ChangeToOldMaterial();
+        rightHandChangeMaterial.ChangeToOldMaterial();
     }
 
     IEnumerator Delay()
@@ -102,9 +105,6 @@ public class HarvestHeadset : MonoBehaviour
             //move headset to original rotation
             this.transform.rotation = standSocket.transform.rotation;
             //Debug.Log("returning");
-
-            //leftHandChangeMaterial.ChangeToOldMaterial();
-            //rightHandChangeMaterial.ChangeToOldMaterial();
         }
     }
 }

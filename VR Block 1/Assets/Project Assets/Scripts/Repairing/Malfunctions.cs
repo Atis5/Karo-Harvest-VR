@@ -54,7 +54,7 @@ public class Malfunctions : MonoBehaviour
     void Update()
     {
         //keeps track of time
-        timePassed = Time.time;
+        timePassed = Time.timeSinceLevelLoad;
         //index starts from 1, as index 0 = 0
         for (int i = 1; i < malfunctTimes.Count; i++)
         {
@@ -101,7 +101,7 @@ public class Malfunctions : MonoBehaviour
     {
         for (int i = 0; i < frequencies.Length; i++)
         {
-            frequencies[i] = Random.Range(3 + i, 5 + i); // 1,3 2,4, 3,5
+            frequencies[i] = Random.Range(2 + i, 4 + i); // 1,3 2,4, 3,5
             //Debug.Log(i + ": " + frequencies[i]);
         }
     }
@@ -185,7 +185,7 @@ public class Malfunctions : MonoBehaviour
         humidifierTXT.text = "HUMIDIFIER: MALFUNCTIONING";
     }
 
-    void repairHarvester()
+    public void repairHarvester()
     {
         //enables the script that makes the object grabbable
         headset.GetComponent<XRGrabInteractable>().enabled = true;
@@ -195,7 +195,7 @@ public class Malfunctions : MonoBehaviour
         harvesterTXT.text = "HARVESTER: FUNCTIONING PROPERLY";
     }
 
-    void repairHumidifier()
+    public void repairHumidifier()
     {
         //deactivates the malfunction UI
         humidifierMalfunctUI.SetActive(false);
