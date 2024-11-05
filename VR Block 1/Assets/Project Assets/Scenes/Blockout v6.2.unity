@@ -5869,7 +5869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8226e925998ec4b904e4c069367b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humidityIncrementRateButton: 0.15
+  humidityIncrementRateButton: 10
   maxHumidityCount: 100
   correctHumidity:
   - 50
