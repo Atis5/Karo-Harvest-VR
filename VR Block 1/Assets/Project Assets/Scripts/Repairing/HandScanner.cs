@@ -19,6 +19,9 @@ public class HandScanner : MonoBehaviour
     string password;
     [SerializeField] Repairing repairScript;
 
+    //Needed for audio
+    private AudioSource scannerSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +30,17 @@ public class HandScanner : MonoBehaviour
         repairScript?.sendPass.AddListener(getPass);
         //to check if the person got logged off
         repairScript?.logOff.AddListener(loggedOff);
+
+        // Grab reference to audio source.
+        scannerSound = GetComponent<AudioSource>();
     }
 
+
+    private void OnTriggerEnter()
+    {
+        scannerSound.Play();
+    }
+    
     private void OnTriggerStay(Collider other)
     {
         //if (other.gameObject == leftHand || other.gameObject == rightHand) 
@@ -44,12 +56,14 @@ public class HandScanner : MonoBehaviour
                 passText.fontSize = 687;
                 scanned = true;
             }
+
         //}
     }
 
     private void OnTriggerExit(Collider other)
     {
         timeOnScanner = 0;
+        scannerSound.Stop();
     }
 
     //gets the password from repairing script

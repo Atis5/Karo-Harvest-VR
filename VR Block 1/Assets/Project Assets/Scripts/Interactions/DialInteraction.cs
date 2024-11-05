@@ -7,14 +7,20 @@ public class DialInteraction : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject dialKnob;
+    public Transform dialKnobTransform;
 
     [Header("Events")]
     public UnityEvent dialLeft;
+    public UnityEvent dialLeftOnce;
     public UnityEvent dialUp;
+    public UnityEvent dialUpOnce;
     public UnityEvent dialRight;
+    public UnityEvent dialRightOnce;
 
     [Header("Other")]
-    public Transform dialKnobTransform;
+    private bool dialLeftCalled = false;
+    private bool dialUpCalled = true;
+    private bool dialRightCalled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +33,29 @@ public class DialInteraction : MonoBehaviour
     {
         //Debug.Log(dialKnobTransform.localEulerAngles.y);
         CallDialLeft();
-        CallDialUp();   
+        CallDialLeftOnce();
+        CallDialUp();
+        CallDialUpOnce();
         CallDialRight();
+        CallDialRightOnce();
     }
 
     private void CallDialLeft()
     {
         if (dialKnobTransform.localEulerAngles.y < 30)
         {
-            //Debug.Log("Dial rotated left!");
             dialLeft.Invoke();
+        }
+    }
+
+    private void CallDialLeftOnce()
+    {
+        if (dialKnobTransform.localEulerAngles.y < 30 && !dialLeftCalled)
+        {
+            dialLeftOnce.Invoke();
+            dialLeftCalled = true;
+            dialUpCalled = false;
+            dialRightCalled = false;
         }
     }
 
@@ -44,8 +63,18 @@ public class DialInteraction : MonoBehaviour
     {
         if (dialKnobTransform.localEulerAngles.y >= 75 && dialKnobTransform.localEulerAngles.y <= 105)
         {
-            //Debug.Log("Dial rotated up!");
             dialUp.Invoke();
+        }
+    }
+
+    private void CallDialUpOnce()
+    {
+        if (dialKnobTransform.localEulerAngles.y >= 75 && dialKnobTransform.localEulerAngles.y <= 105 && !dialUpCalled)
+        {
+            dialUpOnce.Invoke();
+            dialLeftCalled = false;
+            dialUpCalled = true;
+            dialRightCalled = false;
         }
     }
 
@@ -53,8 +82,18 @@ public class DialInteraction : MonoBehaviour
     {
         if (dialKnobTransform.localEulerAngles.y > 150)
         {
-            //Debug.Log("Dial rotated right!");
             dialRight.Invoke();
+        }
+    }
+
+    private void CallDialRightOnce()
+    {
+        if (dialKnobTransform.localEulerAngles.y > 150 && !dialRightCalled)
+        {
+            dialRightOnce.Invoke();
+            dialLeftCalled = false;
+            dialUpCalled = false;
+            dialRightCalled = true;
         }
     }
 }
