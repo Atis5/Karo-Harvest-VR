@@ -31,6 +31,7 @@ public class TeleportBack : MonoBehaviour
                 timeOnPlatform = 0;
                 StartCoroutine(Delay());
             }
+            Debug.Log("teleporting");
         }
     }
 
@@ -39,8 +40,6 @@ public class TeleportBack : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         justTeleported = true;
-        //stops the particle system
-        particles.Stop();
         //Debug.Log("delay done");
     }
 
@@ -50,7 +49,9 @@ public class TeleportBack : MonoBehaviour
         if (other.gameObject == player)
         {
             timeOnPlatform = 0;
-            particles.Stop();
+            //pauses the particle system and clears it afterwards so it doesn't stay visible - fixes the particles bug.
+            particles.Pause();
+            particles.Clear();
             if (justTeleported)
             {
                 justTeleported = false;

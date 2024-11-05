@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class HarvestHeadset : MonoBehaviour
 {
-    [SerializeField] GameObject transitionScreen, player, farmSpawn;
+    [SerializeField] GameObject transitionScreen, player, farmSpawn, fieldWalls;
     [SerializeField] int delayTime = 2;
     [SerializeField] XRSocketInteractor snapSocket;
     [SerializeField] XRSocketInteractor storingSocket;
@@ -16,14 +16,30 @@ public class HarvestHeadset : MonoBehaviour
 
     public UnityEvent countCrop;
 
+    Vector3 orgPos;
+
+    [Header("Hand References")]
+    [SerializeField] private ChangeMaterial leftHandChangeMaterial;
+    [SerializeField] private ChangeMaterial rightHandChangeMaterial;
+
+    [Header ("Audio References")]
+    [Tooltip("Grab reference in 'Camera Offset' object")]
+    [SerializeField] private AudioSource powerUpSound;
+    [Tooltip("Grab reference in 'Camera Offset' object")]
+    [SerializeField] private AudioSource powerDownSound;
+
     private void Start()
     {
         transitionScreen.SetActive(false);
+        orgPos = player.transform.position;
+        fieldWalls.SetActive(false);
     }
     public void HeadsetOn()
     {
         //make screen black for a few seconds
         transitionScreen.SetActive(true);
+        powerUpSound.Play();
+        fieldWalls.SetActive(true);
         StartCoroutine(Delay());
         //move player to farm
         player.transform.position = farmSpawn.transform.position;
@@ -33,15 +49,26 @@ public class HarvestHeadset : MonoBehaviour
         this.transform.position = standSocket.transform.position;
         //move headset to original rotation
         this.transform.rotation = standSocket.transform.rotation;
+
+        //sDebug.Log("Headset is on");
+
+        leftHandChangeMaterial.ChangeToNewMaterial();
+        rightHandChangeMaterial.ChangeToNewMaterial();
+
     }
 
     public void HeadsetOff()
     {
         //make screen black for a few seconds
         transitionScreen.SetActive(true);
+        powerDownSound.Play();
+        fieldWalls.SetActive(false);
         StartCoroutine(Delay());
         //move player back to office facing the right way
-        player.transform.position = Vector3.zero;
+        player.transform.position = orgPos;
+
+        leftHandChangeMaterial.ChangeToOldMaterial();
+        rightHandChangeMaterial.ChangeToOldMaterial();
     }
 
     IEnumerator Delay()
@@ -55,7 +82,7 @@ public class HarvestHeadset : MonoBehaviour
     {
         //get the crop object the player is holding
         IXRSelectInteractable crop = storingSocket.GetOldestInteractableSelected();
-        Debug.Log(crop);
+        //Debug.Log(crop);
         //remove the crop object from the socket so it can be modified
         storingSocket.interactionManager.SelectExit(storingSocket, crop);
         Destroy(crop.transform.gameObject);
