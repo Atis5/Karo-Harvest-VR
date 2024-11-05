@@ -4299,8 +4299,8 @@ Transform:
   m_GameObject: {fileID: 721117661}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8799, z: -0.0757}
-  m_LocalScale: {x: 0.5036518, y: 0.56576985, z: 0.47715768}
+  m_LocalPosition: {x: 0, y: 1.8102, z: -0.0757}
+  m_LocalScale: {x: 0.5036518, y: 0.70516735, z: 0.47715768}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 332591573}
@@ -4406,7 +4406,7 @@ Transform:
   m_GameObject: {fileID: 723009674}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.086, z: 0.075}
+  m_LocalPosition: {x: 0, y: 0.062, z: 0.075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6177,7 +6177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a95bf3421c1deb4b93942f311c004e8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.761
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6390,7 +6390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timePhases: []
   malfunctTimes: []
-  numPhases: 3
+  numPhases: 4
   maxTime: 18
   humidifierMalfunt: 0
   harvesterMalfunt: 0
@@ -6459,7 +6459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winCondition: 24
-  timeLimit: 240
+  timeLimit: 300
   sendTime:
     m_PersistentCalls:
       m_Calls: []
@@ -8333,7 +8333,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3e0ead11dba534a4fb7c304b31a859f9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.674
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10478,7 +10478,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3e0ead11dba534a4fb7c304b31a859f9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.674
   m_Pitch: 1
   Loop: 0
   Mute: 0

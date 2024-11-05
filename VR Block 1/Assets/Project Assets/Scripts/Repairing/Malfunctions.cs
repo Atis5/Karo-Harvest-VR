@@ -13,7 +13,7 @@ public class Malfunctions : MonoBehaviour
     float timePassed;
     int currMalfunct = 0;
     float timeInBetweenMalfunct = 0.1f;
-    [SerializeField] int numPhases = 3;
+    [SerializeField] int numPhases = 4;
     [SerializeField] float maxTime;
 
     public bool humidifierMalfunt, harvesterMalfunt = false;
