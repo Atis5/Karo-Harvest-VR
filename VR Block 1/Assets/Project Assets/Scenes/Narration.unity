@@ -1220,13 +1220,14 @@ MonoBehaviour:
     AI is being repaired.
   narrationSentance3: 'Make sure the humidity level is at the right threshold, otherwise
     the plants will die. '
-  narrationSentance4: When a malfunction appears log in as administrator to quickly
-    avert them to comtinue to use the operating system.
-  narrationSentance5: 'Make sure to harvest the plants at the right time, otherwise
+  narrationSentance4: You must remove the dead plants before they can regrow.
+  narrationSentance5: When a malfunction appears log in as administrator to quickly
+    avert them to continue to use the operating system.
+  narrationSentance6: 'Make sure to harvest the plants at the right time, otherwise
     the plants will waste away. '
-  narrationSentance6: 'Be careful, there is a quota you have to reach at the end
+  narrationSentance7: 'Be careful, there is a quota you have to reach at the end
     of the day. '
-  narrationSentance7: 'We wish you a successful workday! '
+  narrationSentance8: 'We wish you a successful workday! '
 --- !u!4 &648540197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -2126,7 +2127,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Blockout v6
+          m_StringArgument: Blockout v6.2
           m_BoolArgument: 0
         m_CallState: 2
   onHold:

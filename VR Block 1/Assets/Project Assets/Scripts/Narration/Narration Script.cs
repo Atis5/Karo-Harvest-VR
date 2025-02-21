@@ -19,6 +19,7 @@ public class NarrationScript : MonoBehaviour
     [TextArea] [SerializeField] private string narrationSentance5;
     [TextArea] [SerializeField] private string narrationSentance6;
     [TextArea] [SerializeField] private string narrationSentance7;
+    [TextArea] [SerializeField] private string narrationSentance8;
 
 
     // Start is called before the first frame update
@@ -43,17 +44,21 @@ public class NarrationScript : MonoBehaviour
 
         ShowNarration.text = narrationSentance4;
 
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(4);
 
         ShowNarration.text = narrationSentance5;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
 
         ShowNarration.text = narrationSentance6;
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
 
         ShowNarration.text = narrationSentance7;
+
+        yield return new WaitForSeconds(4);
+
+        ShowNarration.text = narrationSentance8;
 
         yield return new WaitForSeconds(4);
     }
